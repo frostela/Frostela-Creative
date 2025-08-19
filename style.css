@@ -1,59 +1,25 @@
-@font-face {
-    font-family: Minecraft;
-    src: url("Minecraft.ttf");
-}
-
-body {
-    font-family: "Arial", sans-serif;
+*{
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #000000;
-    flex-direction: column;
-    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-#header {
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    font-family: Minecraft;
-    text-align: center;
-}
-
-#header h1{
-    font-size: 7vw;
-    margin: 0;
-    font-weight: 100;
-}
-
-#tagline {
-    text-align: center;
+nav{
     width: 100vw;
-    color: #919191;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
 }
 
-#tagline p{
-    font-size: 3vw;
-    margin: 5px;
+#Frostela{
+    margin-left: 5px;
 }
 
-#contact-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4285f4;
-    color: #fff;
+nav a{
     text-decoration: none;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#contact-button:hover {
-    background-color: #1a73e8;
+    font-family: "Archivo", sans-serif;
+    color: black;
+    font-weight: 500;
+    font-size: 1.4rem;
 }
