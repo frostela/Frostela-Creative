@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   box-sizing: border-box;
 }
 
@@ -12,6 +11,8 @@
 
 body {
   width: 100%;
+  background-color: white;
+  overflow-x: hidden;
 }
 
 /* NAV */
@@ -23,6 +24,9 @@ nav {
   justify-content: space-between;
   position: fixed;
   z-index: 10;
+  background: transparent;        /* ✅ ensure it’s see-through */
+  mix-blend-mode: difference;     /* ✅ apply blend mode here */
+
 }
 
 #Frostela {
@@ -32,7 +36,7 @@ nav {
 nav a {
   text-decoration: none;
   font-family: "Archivo", sans-serif;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: 500;
   font-size: 1.4rem;
 }
@@ -82,6 +86,59 @@ main {
 
   /* shift by half since we duplicated text */
 }
+
+/* Cat Section */
+
+/* Cat sprite animation */
+.cat {
+  position: fixed;
+  bottom: 15px; /* just above the marquee */
+  left: -100px; /* start off screen */
+  width: 96px;   /* frame width (adjust to 1 frame width from your sprite sheet) */
+  height: 64px;  /* frame height */
+  background: url("/contents/images/cat/WALK.png") left center;
+  background-size: cover;
+
+  /* Make it walk across screen */
+  animation: walkAcross 12s linear infinite, walkSprite 2s steps(12) infinite;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* Walk across screen */
+@keyframes walkAcross {
+  0% { left: 100%; }
+  100% { left: -100px; }
+}
+
+/* Animate sprite frames */
+@keyframes walkSprite {
+  from { background-position: 0px; }
+  to { background-position: -960px; } /* frameWidth * frameCount */
+}
+
+/* Message bubble */
+.cat::after {
+  content: "Meow 🐾";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.cat:hover::after {
+  opacity: 1;
+}
+
 
 /* Hero Section */
 
@@ -156,21 +213,74 @@ main {
 
 .sticky-section {
   position: relative;
-  padding: 20px;
+  padding: 50px 20px;
 }
 
 .sticky-text {
   height: 70vh;
   position: sticky;
-  top: 20%;
+  top: 60px;
   font-size: 2rem;
   font-weight: bold;
   font-family: "Archivo", sans-serif;
   z-index: 5;
+  display: flex;
+  flex-direction: column;
 }
 
-.line {
-
+#sticky-section-text.line p {
+  text-align: left;
+  position: relative;
+  transition: 0.8s ease; 
+  display: inline;
+  width: fit-content;
+  left: 0;
 }
 
-/* Lines: hidden initially */
+#sticky-section-text.line-js p {
+  text-align: right;
+  position: relative;
+  transition: 0.8s ease; 
+  width: fit-content;
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+
+/* Website List Section */
+
+.website-list{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.website{
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.website-ss{
+  border: black 2px solid;
+  border-radius: 15px;
+  width: 40%;
+}
+
+.website-logo{
+  width: 70%;
+}
+
+.website-description{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 15%;
+  position: sticky;
+  top: 5px;
+}
+
+.website-description p{
+  font-size: 1.2rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
