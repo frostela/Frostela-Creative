@@ -23,7 +23,7 @@ window.addEventListener('scroll', function () {
   const scrollPosition = window.scrollY;
   const sound = document.getElementById('whoopSound');
 
-  if (scrollPosition > 200) {
+  if (scrollPosition > 400) {
     if (!myElement.classList.contains('line-js')) {
       sound.currentTime = 0; // restart sound
       sound.play();
