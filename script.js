@@ -40,3 +40,46 @@ window.addEventListener('scroll', function () {
   }
 });
 
+
+// Hovering effect
+
+const posters = document.querySelectorAll('.poster');
+const paragraphs = document.querySelectorAll('.desc p');
+
+posters.forEach((poster, index) => {
+  poster.addEventListener('mouseenter', () => {
+    paragraphs.forEach(p => p.style.color = 'grey'); // reset all
+    paragraphs[index].style.color = 'white';        // highlight matching one
+  });
+  poster.addEventListener('mouseleave', () => {
+    paragraphs[index].style.color = 'grey'; // reset when hover ends
+  });
+});
+
+const slider = document.querySelector('.reasons');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+  isDown = true;
+  slider.classList.add('active');
+  startX = e.pageX - slider.offsetLeft;
+  scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener('mouseleave', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+slider.addEventListener('mouseup', () => {
+  isDown = false;
+  slider.classList.remove('active');
+});
+slider.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - slider.offsetLeft;
+  const walk = (x - startX) * 2; // *2 = scroll speed multiplier
+  slider.scrollLeft = scrollLeft - walk;
+});
+
