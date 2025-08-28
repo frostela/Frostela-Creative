@@ -512,7 +512,8 @@ main {
 #services {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 200vh;
+  padding-top: 20px;
 }
 
 .noise {
@@ -523,7 +524,7 @@ main {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 10px;
-  height: 100vh;
+  height: 300vh;
   justify-content: center;
   opacity: .067;
   overflow: hidden;
@@ -533,6 +534,7 @@ main {
   width: 100%;
   z-index: 1 !important;
   pointer-events: none;
+  padding-bottom: 50px;
 }
 
 #services h1{
@@ -540,21 +542,30 @@ main {
   font-family: "Akira", sans-serif;
   text-align: center;
   position: sticky;
-  top: 20px;
+  top: 60px;
 }
 
 /* Cards */
 
+#cards {
+  height: 300vh; /* enough scroll space for reveal */
+  position: relative;
+  padding-bottom: 50px;
+}
+
 .card {
   width: 200px;
   height: 250px;
-  margin: 1rem auto;
   perspective: 1000px;
   cursor: pointer;
-  z-index: 7;
   position: sticky;
+  top: 200px; /* cards stick here when reached */
+  margin: auto;
+  z-index: 7;
+  margin-bottom: 200px;
 }
 
+/* Flip effect */
 .card-inner {
   position: relative;
   width: 100%;
@@ -562,10 +573,14 @@ main {
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
-
 .card:hover .card-inner {
   transform: rotateY(180deg);
 }
+
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
 
 .card-front,
 .card-back {
@@ -582,17 +597,8 @@ main {
 .card-front {
   background: white;
   border: 1px solid #e5e7eb;
-  padding: 10px;
-  justify-content: center;
   flex-direction: column;
   gap: 10px;
-}
-
-.card-front span{
-  text-align: center;
-  font-family: "Archivo", arial, sans-serif;
-  font-weight: 500;
-  font-size: 1.2rem;
 }
 
 .card-back {
@@ -601,6 +607,28 @@ main {
   transform: rotateY(180deg);
 }
 
-#shopify-logo{
+/* Different alignments */
+.card-left {
+  margin-left: 10%; /* left aligned */
+}
+
+.card-right {
+  margin-left: auto;
+  margin-right: 10%; /* right aligned */
+}
+
+.card-center {
+  margin-left: auto;
+  margin-right: auto; /* centered */
+}
+
+#shopify-logo {
   width: 50%;
+}
+
+.card-front span{
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
 }

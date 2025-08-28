@@ -86,3 +86,69 @@ slider.addEventListener('mousemove', (e) => {
   slider.scrollLeft = scrollLeft - walk;
 });
 
+// Card flipping 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".card-inner");
+  const cardsSection = document.querySelector("#cards");
+
+  function playSound(path) {
+    const sound = new Audio(path);
+    sound.play();
+  }
+
+  // Scroll-based flipping
+  window.addEventListener("scroll", () => {
+    const sectionBottom = cardsSection.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+
+    if (sectionBottom <= windowHeight + 50) {
+      cards.forEach((card, i) => {
+        setTimeout(() => {
+          if (!card.classList.contains("flipped")) {
+            card.classList.add("flipped");
+            playSound("./contents/sounds/card-flipping.mp3");
+          }
+        }, i * 300);
+      });
+    } else {
+      cards.forEach((card, i) => {
+        setTimeout(() => {
+          if (card.classList.contains("flipped")) {
+            card.classList.remove("flipped");
+            playSound("./contents/sounds/card-flipping.mp3");
+          }
+        }, i * 300);
+      });
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".card");
+
+  // Preload hover sound
+  const hoverSound = new Audio("./contents/sounds/card-flipping.mp3");
+  hoverSound.preload = "auto";
+
+  function playSound(audio) {
+    const clone = audio.cloneNode();
+    clone.play().catch(() => {});
+  }
+
+  cards.forEach(card => {
+    card.addEventListener("mouseenter", () => {
+      // Only play if card is NOT already flipped
+      if (!card.classList.contains("flipped")) {
+        playSound(hoverSound);
+      }
+      else
+        playSound();
+    });
+  });
+});
+
+
+
+
+

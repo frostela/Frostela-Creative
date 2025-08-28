@@ -265,16 +265,45 @@
         <section id="services">
 
             <h1>Services</h1>
+            <audio id="flip-sound" src="./contents/sounds/card-flipping.mp3" preload="auto"></audio>
 
-            <div class="card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <img id="shopify-logo" src="/contents/images/shopify-logo-png-transparent.png" alt="Shopify Logo">
-                        <span>Shopify Site<br>Design</span>
+
+            <div id="cards">
+                <div class="card card-left">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img id="shopify-logo" src="/contents/images/shopify-logo-png-transparent.png"
+                                alt="Shopify Logo">
+                            <span>Shopify Site<br>Design</span>
+                        </div>
+                        <div class="card-back">Back Side</div>
                     </div>
-                    <div class="card-back">Back Side</div>
+                </div>
+
+                <div class="card card-right">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img id="shopify-logo" src="/contents/images/shopify-logo-png-transparent.png"
+                                alt="Shopify Logo">
+                            <span>Front End<br>Design</span>
+                        </div>
+                        <div class="card-back">Back Side</div>
+                    </div>
+                </div>
+
+                <div class="card card-center">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img id="shopify-logo" src="/contents/images/shopify-logo-png-transparent.png"
+                                alt="Shopify Logo">
+                            <span>Graphics Design<br>Design</span>
+                        </div>
+                        <div class="card-back">Back Side</div>
+                    </div>
                 </div>
             </div>
+
+
             <div class="noise" data-framer-name="Noize">
                 <div style="position:absolute;
                 border-radius:inherit;
