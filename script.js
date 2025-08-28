@@ -43,18 +43,21 @@ window.addEventListener('scroll', function () {
 
 // Hovering effect
 
-const posters = document.querySelectorAll('.poster');
-const paragraphs = document.querySelectorAll('.desc p');
+const posters = document.querySelectorAll('.poster');  // all posters
+const spans = document.querySelectorAll('p span');     // all desc spans
 
 posters.forEach((poster, index) => {
   poster.addEventListener('mouseenter', () => {
-    paragraphs.forEach(p => p.style.color = 'grey'); // reset all
-    paragraphs[index].style.color = 'white';        // highlight matching one
+    spans.forEach(span => span.style.color = 'grey');  // reset all
+    spans[index].style.color = 'white';                // highlight matching one
   });
+
   poster.addEventListener('mouseleave', () => {
-    paragraphs[index].style.color = 'grey'; // reset when hover ends
+    spans[index].style.color = 'grey';                 // reset on hover out
   });
 });
+
+// Reasons Drag
 
 const slider = document.querySelector('.reasons');
 let isDown = false;

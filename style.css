@@ -389,10 +389,12 @@ main {
   font-family: "Archivo", sans-serif;
   font-weight:500;
   width: 55vw;
+  color: #303030;
 }
 
 #helping-heading span{
   font-weight: bold;
+  color: #000000;
 }
 
 .helping-gif img{
@@ -458,6 +460,11 @@ main {
   border: 1px solid black;
   height: 50vh;
   background-color: #E1E1E1;
+  transition: background-color 500ms ease; /* duration + delay */
+}
+
+.reason:hover{
+  background-color: #ffffff;
 }
 
 .reason h2{
