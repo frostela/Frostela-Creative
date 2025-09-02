@@ -602,9 +602,22 @@ main {
 }
 
 .card-back {
-  background: #8b5cf6;
+  background: #000000;
   color: white;
   transform: rotateY(180deg);
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.card-back span{
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 /* Different alignments */
