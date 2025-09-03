@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Locomotive Sticky Test (Working)</title>
+
+  <!-- Locomotive CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css"/>
+
+  <style>
+    /* Fallback: allow native scroll by default */
+    html, body { height: 100%; }
+    body { margin: 0; overflow-y: auto; }
+
+    /* Only hide native scroll when Locomotive is active */
+    html.has-scroll-smooth body { overflow: hidden; }
+
+    /* Scroll container must at least fill viewport */
+    [data-scroll-container] { min-height: 100vh; }
+
+    /* Big sections so we have something to scroll */
+    section { height: 200vh; padding: 20px; }
+
+    .s1 { background: blueviolet; color: #fff; }
+    .s2 { background: #eee; }
+
+    h1 { font-size: 3rem; margin: 0; }
+
+    /* Just to visualize */
+    .spacer { height: 20vh; }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Use a DIV as the scroll container (not <body>) -->
+  <div id="scroll-container" data-scroll-container>
+
+    <section class="s1 sticky-section" data-scroll-section>
+      <!-- ✅ Sticky element lives inside a tall section -->
+      <div
+        data-scroll
+        data-scroll-sticky
+        data-scroll-target=".sticky-section"
+        style="padding: 20px; background: rgba(0,0,0,0.2); border-radius: 12px; width: max-content;"
+      >
+        <h1>I stick inside section</h1>
+      </div>
+      <div class="spacer"></div>
+    </section>
+
+    <section class="s2" data-scroll-section>
+      <h1>Another tall section</h1>
+    </section>
+
+  </div>
+
+  <!-- Locomotive JS FIRST -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+  <!-- Your init AFTER -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const scrollContainer = document.querySelector("#scroll-container");
+
+      // Safety: only init if container exists
+      if (!scrollContainer) return;
+
+      const scroll = new LocomotiveScroll({
+        el: scrollContainer,
+        smooth: true,
+        smartphone: { smooth: true },
+        tablet: { smooth: true }
+      });
+
+      // If your page changes height dynamically (images/fonts), you can refresh:
+      window.addEventListener("load", () => scroll.update());
+    });
+  </script>
+</body>
+</html>

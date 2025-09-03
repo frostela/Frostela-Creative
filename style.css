@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 
+/* Fonts */
+
 @font-face {
   font-family: "Akira";
   src: url("/Fonts/Akira\ Expanded\ Demo.otf") format("opentype");
@@ -72,7 +74,7 @@ main {
 
 .marquee-content span {
   white-space: nowrap;
-  padding-right: 2rem;
+  padding-right: 1rem;
   /* spacing between repeats */
   font-size: 1.2rem;
   font-weight: bold;
@@ -242,7 +244,7 @@ main {
 .sticky-text {
   height: 20vh;
   position: sticky;
-  top: 45%;
+  top: 50%;
   font-size: 2rem;
   font-weight: normal;
   font-family: "Archivo", sans-serif;
@@ -258,6 +260,8 @@ main {
   display: inline;
   width: fit-content;
   left: 0;
+  font-size: 5rem;
+  font-weight: 500;
 }
 
 #sticky-section-text.line-js p {
@@ -268,8 +272,8 @@ main {
   left: 100%;
   transform: translateX(-100%);
   font-size: 1.5rem;
+  flex-direction: row;
 }
-
 
 /* Website List Section */
 
@@ -286,6 +290,7 @@ main {
   position: sticky;
   top: 50%;
   font-size: 1.5rem;
+  font-family: "Archivo", sans-serif;
 }
 
 .website-list {
@@ -303,7 +308,7 @@ main {
 
 .website-ss {
   border: black 1px solid;
-  width: 50%;
+  width: 60%;
 }
 
 .website-logo {
@@ -484,7 +489,7 @@ main {
 
 .reason {
   flex: 0 0 28vw;
-  padding: 40px 30px; 
+  padding: 40px 30px;
   border: 1px solid black;
   height: 50vh;
   background-color: #E1E1E1;
@@ -537,7 +542,7 @@ main {
   padding-bottom: 50px;
 }
 
-#services h1{
+#services h1 {
   font-size: 7vw;
   font-family: "Akira", sans-serif;
   text-align: center;
@@ -548,7 +553,8 @@ main {
 /* Cards */
 
 #cards {
-  height: 300vh; /* enough scroll space for reveal */
+  height: 300vh;
+  /* enough scroll space for reveal */
   position: relative;
   padding-bottom: 50px;
 }
@@ -559,7 +565,8 @@ main {
   perspective: 1000px;
   cursor: pointer;
   position: sticky;
-  top: 200px; /* cards stick here when reached */
+  top: 200px;
+  /* cards stick here when reached */
   margin: auto;
   z-index: 7;
   margin-bottom: 200px;
@@ -573,6 +580,7 @@ main {
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
+
 .card:hover .card-inner {
   transform: rotateY(180deg);
 }
@@ -614,7 +622,7 @@ main {
   gap: 10px;
 }
 
-.card-back span{
+.card-back span {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
@@ -622,24 +630,27 @@ main {
 
 /* Different alignments */
 .card-left {
-  margin-left: 10%; /* left aligned */
+  margin-left: 10%;
+  /* left aligned */
 }
 
 .card-right {
   margin-left: auto;
-  margin-right: 10%; /* right aligned */
+  margin-right: 10%;
+  /* right aligned */
 }
 
 .card-center {
   margin-left: auto;
-  margin-right: auto; /* centered */
+  margin-right: auto;
+  /* centered */
 }
 
 #shopify-logo {
   width: 50%;
 }
 
-.card-front span{
+.card-front span {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   text-align: center;
   font-size: 1.3rem;
