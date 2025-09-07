@@ -301,15 +301,10 @@ main {
 }
 
 .sticky-text p {
-  text-align: left;
-  position: relative;
-  transition: 0.8s ease;
-  display: inline;
-  width: fit-content;
-  left: 0;
-  font-size: 3rem;
-  font-weight: 500;
-  text-transform:capitalize;
+  font-size: 5vw;
+  font-family: "Akira", sans-serif;
+  text-align: center;
+  text-transform:uppercase;
 }
 
 /* Website List Section */
