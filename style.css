@@ -216,10 +216,10 @@ main {
 }
 
 .hero-headings h1:hover {
-  color: #e0fe7f;
+  color: #37a5ffd0;
   /* translucent glassy white */
   text-shadow:
-    0 4px 15px #d0ff37d0;
+    0 4px 15px #37a5ffd0;
   /* soft glow */
 
   transform: scale(1.2);
@@ -234,85 +234,108 @@ main {
   margin-top: -2.7vw;
 }
 
+/* About me Section */
+
+#about-me{
+  padding: 50px 0;
+}
+
+#about-me h1{
+  font-size: 7vw;
+  font-family: "Akira", sans-serif;
+  text-align: center;
+}
+
+.in-about-me{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 30px;
+}
+
+.img-with-points{
+  display: flex;
+  flex-direction: column;
+  width: 18%;
+  gap: 10px;
+}
+
+.img-with-points img{
+  
+}
+
+.points h3{
+  font-size: 1.3rem;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  text-align: right;
+}
+
+.about-me-text h2{
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+}
+
+.about-me-text p{
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight:500;
+  margin-top: 10px;
+  line-height: 1;
+}
 /* Sticky Section */
 
 .sticky-section {
   position: relative;
   padding: 50px 20px;
+  height: 100vh;
 }
 
 .sticky-text {
-  height: 20vh;
-  position: sticky;
-  top: 50%;
-  font-size: 2rem;
+  position: relative;
   font-weight: normal;
   font-family: "Archivo", sans-serif;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
+  z-index: 5;
+  padding: 40px 0 20px 0;
 }
 
-#sticky-section-text.line p {
+.sticky-text p {
   text-align: left;
   position: relative;
   transition: 0.8s ease;
   display: inline;
   width: fit-content;
   left: 0;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 500;
-}
-
-#sticky-section-text.line-js p {
-  text-align: right;
-  position: relative;
-  transition: 0.8s ease;
-  width: fit-content;
-  left: 100%;
-  transform: translateX(-100%);
-  font-size: 1.5rem;
-  flex-direction: row;
+  text-transform:capitalize;
 }
 
 /* Website List Section */
 
-.white-blank {
-  width: 100%;
-  height: 80px;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 8;
-}
-
-#frostela {
-  position: sticky;
-  top: 50%;
-  font-size: 1.5rem;
-  font-family: "Archivo", sans-serif;
-}
 
 .website-list {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
-  margin-left: 100px;
+  overflow-x: hidden;
 }
 
-.website {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-}
 
 .website-ss {
   border: black 1px solid;
-  width: 60%;
+    width: 50vw;
+  filter:saturate(0.3);
+  transition:500ms;
+}
+
+.website-ss:hover {
+  filter: none;
 }
 
 .website-logo {
-  width: 70%;
+  width: 60%;
 }
 
 .website-description {
@@ -326,75 +349,6 @@ main {
 .website-description p {
   font-size: 1.2rem;
   font-family: Helvetica, Arial, sans-serif;
-}
-
-/* 2d Designs */
-
-#g-design {
-  background-color: #000000;
-  padding: 50px 20px;
-}
-
-#g-design h1 {
-  font-family: "mc", Arial, Helvetica, sans-serif;
-  color: white;
-  font-size: 8rem;
-  line-height: 1.1;
-  position: relative;
-  left: 2px;
-}
-
-.poster-w-desc {
-  gap: 5px;
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 20px;
-}
-
-.posters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  width: 75%;
-  align-content: flex-start;
-}
-
-.poster {
-  width: calc(50% - 2.5px);
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: hidden;
-  align-items: flex-start;
-}
-
-.poster img {
-  width: calc(50% - 2.5px);
-}
-
-.poster img {
-  position: absolute;
-  inset: 0;
-  /* fill the square */
-  width: 100%;
-  object-fit: cover;
-  /* no stretching; crop instead */
-  display: block;
-}
-
-.desc {
-  display: flex;
-  color: white;
-  flex-direction: column;
-  width: 20%;
-  height: 90vh;
-  position: sticky;
-  top: 60px;
-}
-
-.desc p {
-  display: inline;
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgb(126, 126, 126);
 }
 
 /* Helping Brands */

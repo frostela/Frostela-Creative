@@ -16,29 +16,9 @@ Array.from(hoverElements).forEach(element => {
   // });
 });
 
-// Sticky Section js
+// Horizental scroll of Website List
 
-window.addEventListener('scroll', function () {
-  const myElement = document.getElementById('sticky-section-text');
-  const scrollPosition = window.scrollY;
-  const sound = document.getElementById('whoopSound');
 
-  if (scrollPosition > 400) {
-    if (!myElement.classList.contains('line-js')) {
-      sound.currentTime = 0; // restart sound
-      sound.play();
-    }
-    myElement.classList.add('line-js');
-    myElement.classList.remove('line');
-  } else {
-    if (!myElement.classList.contains('line')) {
-      sound.currentTime = 0;
-      sound.play();
-    }
-    myElement.classList.add('line');
-    myElement.classList.remove('line-js');
-  }
-});
 
 
 // Hovering effect
@@ -133,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function playSound(audio) {
     const clone = audio.cloneNode();
-    clone.play().catch(() => {});
+    clone.play().catch(() => { });
   }
 
   cards.forEach(card => {
@@ -148,7 +128,71 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Lenis Scroll
+
+// Initialize Lenis
+const lenis = new Lenis({
+  autoRaf: false,  // let us control raf manually for GSAP sync
+  duration: 1.4,
+  easing: (t) => 1 - Math.pow(1 - t, 3),
+  smoothWheel: true,
+  smoothTouch: true,
+});
+
+// RAF loop
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+requestAnimationFrame(raf)
+
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(ScrollTrigger)
+
+  const contents = gsap.utils.toArray(".website-list .website")
+
+  gsap.to(contents, {
+    xPercent: -83 * (contents.length - 1),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".sticky-section", // pin the whole section
+      start: "top top",
+      end: () => "+=" + (contents.length * window.innerWidth * 0.55), // adjust based on width of items
+      pin: true,
+      scrub: 1,
+    }
+  })
 
 
 
+  // helper: split text into spans (per char)
+  function splitTextToSpans(element) {
+    const text = element.innerText;
+    element.innerHTML = "";
+    text.split("").forEach(char => {
+      const span = document.createElement("span");
+      span.innerText = char === " " ? "\u00A0" : char;
+      element.appendChild(span);
+    });
+    return element.querySelectorAll("span");
+  }
 
+  // grab all h1 inside .split-line-anim
+  document.querySelectorAll(".split-line-anim h1").forEach(heading => {
+    const chars = splitTextToSpans(heading);
+
+    gsap.from(chars, {
+      scrollTrigger: {
+        trigger: heading,
+        toggleActions: "restart pause resume reverse",
+        start: "top 80%" // tweak this for earlier/later trigger
+      },
+      y: 80,
+      opacity: 0,
+      duration: 0.6,
+      ease: "circ.out",
+      stagger: 0.03
+    });
+  });
+});
