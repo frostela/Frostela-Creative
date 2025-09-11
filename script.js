@@ -151,16 +151,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger)
 
   const contents = gsap.utils.toArray(".website-list .website")
-
+  const gap = 10; // same as your CSS gap
+  const totalShift = contents.length > 1 
+    ? (contents.length - 1) * (contents[0].offsetWidth + gap)
+    : 0;
+  
   gsap.to(contents, {
-    xPercent: -83 * (contents.length - 1),
+    x: -totalShift,
     ease: "none",
     scrollTrigger: {
       trigger: ".sticky-section", // pin the whole section
       start: "top top",
-      end: () => "+=" + (contents.length * window.innerWidth * 0.55), // adjust based on width of items
+      end: () => "+=" + totalShift,
       pin: true,
       scrub: 1,
+      anticipatePin: 1
     }
   })
 

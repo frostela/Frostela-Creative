@@ -78,7 +78,7 @@ main {
   /* spacing between repeats */
   font-size: 1.2rem;
   font-weight: bold;
-  font-family: "Archivo", sans-serif;
+  font-family: Arial, Helvetica, sans-serif !important;
   color: #000000;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -315,14 +315,20 @@ main {
   flex-direction: row;
   gap: 10px;
   overflow-x: hidden;
+  padding-left: 500px;
+}
+
+.website{
+  will-change: transform;
 }
 
 
 .website-ss {
   border: black 1px solid;
-    width: 50vw;
+  width: 50vw;
   filter:saturate(0.3);
   transition:500ms;
+  cursor: pointer;
 }
 
 .website-ss:hover {
@@ -466,8 +472,6 @@ main {
 #services {
   position: relative;
   width: 100%;
-  height: 200vh;
-  padding-top: 20px;
 }
 
 .noise {
@@ -478,7 +482,7 @@ main {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 10px;
-  height: 300vh;
+  height: 350vh;
   justify-content: center;
   opacity: .067;
   overflow: hidden;
@@ -488,29 +492,31 @@ main {
   width: 100%;
   z-index: 1 !important;
   pointer-events: none;
-  padding-bottom: 50px;
+}
+
+#services-h1{
+  position: sticky;
+  top: 20px;
+  padding-bottom: 600px;
+  padding-top: 40px;
 }
 
 #services h1 {
   font-size: 7vw;
   font-family: "Akira", sans-serif;
   text-align: center;
-  position: sticky;
-  top: 60px;
 }
 
 /* Cards */
 
 #cards {
-  height: 300vh;
-  /* enough scroll space for reveal */
   position: relative;
-  padding-bottom: 50px;
+  height:350vh;
 }
 
 .card {
-  width: 200px;
-  height: 250px;
+  width: 230px;
+  height: 280px;
   perspective: 1000px;
   cursor: pointer;
   position: sticky;
@@ -519,6 +525,7 @@ main {
   margin: auto;
   z-index: 7;
   margin-bottom: 200px;
+
 }
 
 /* Flip effect */
@@ -549,6 +556,7 @@ main {
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.50);
 }
 
 .card-front {
@@ -573,8 +581,12 @@ main {
 
 .card-back span {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 500;
+}
+
+.card-back br {
+    font-size: 2rem;
 }
 
 /* Different alignments */
@@ -605,3 +617,14 @@ main {
   font-size: 1.3rem;
   font-weight: 500;
 }
+
+/* Skills Section */
+
+#skills{
+  width: 100%;
+}
+
+#skills .bg img{
+  width: 100%;
+}
+
