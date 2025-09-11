@@ -152,10 +152,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const contents = gsap.utils.toArray(".website-list .website")
   const gap = 10; // same as your CSS gap
-  const totalShift = contents.length > 1 
+  const totalShift = contents.length > 1
     ? (contents.length - 1) * (contents[0].offsetWidth + gap)
     : 0;
-  
+
   gsap.to(contents, {
     x: -totalShift,
     ease: "none",
@@ -199,5 +199,71 @@ document.addEventListener("DOMContentLoaded", (event) => {
       ease: "circ.out",
       stagger: 0.03
     });
+  });
+
+  //Skill Section's Card Animation
+
+  gsap.ticker.lagSmoothing(0);
+
+  // Cards and their initial rotations from the screenshots
+  const cards = gsap.utils.toArray(".skill-card");
+  const rotations = [-12, 10, -5, 5, -2];
+
+  // Place all cards off-screen initially and set rotation
+  cards.forEach((card, index) => {
+    gsap.set(card, {
+      y: window.innerHeight,
+      rotate: rotations[index]
+    });
+  });
+
+  // ScrollTrigger that pins the section and drives the custom onUpdate
+  ScrollTrigger.create({
+    trigger: "#skills",
+    start: "top top",
+    end: `+=${window.innerHeight * 8}px`,
+    pin: true,
+    pinSpacing: true,
+    scrub: 1,
+    onUpdate: (self) => {
+      const progress = self.progress;             // 0 → 1
+      const totalCards = cards.length;
+      const progressPerCard = 1 / totalCards;
+
+      cards.forEach((card, index) => {
+        // progress slice this card is responsible for
+        const cardStart = index * progressPerCard;
+        let cardProgress = (progress - cardStart) / progressPerCard;
+        cardProgress = Math.min(Math.max(cardProgress, 0), 1);
+
+        // Default positions: slide upward from bottom
+        let yPos = window.innerHeight * (1 - cardProgress);
+        let xPos = 0;
+
+        // When a card is fully in (cardProgress === 1) and not the last one,
+        // compute remainingProgress to start drifting it diagonally.
+        if (cardProgress === 1 && index < totalCards - 1) {
+          const remainingProgress =
+            (progress - (cardStart + progressPerCard)) /
+            (1 - (cardStart + progressPerCard));
+
+          if (remainingProgress > 0) {
+            const distanceMultiplier = 1 - index * 0.15;
+
+            // Drift left and slightly upward based on viewport
+            xPos = -window.innerWidth * 0.3 * distanceMultiplier * remainingProgress;
+            yPos = -window.innerHeight * 0.3 * distanceMultiplier * remainingProgress;
+          }
+        }
+
+        // Apply instantly each tick
+        gsap.to(card, {
+          y: yPos,
+          x: xPos,
+          duration: 0,
+          ease: "none"
+        });
+      });
+    }
   });
 });
