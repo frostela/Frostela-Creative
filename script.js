@@ -171,35 +171,124 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 
-  // helper: split text into spans (per char)
-  function splitTextToSpans(element) {
-    const text = element.innerText;
-    element.innerHTML = "";
-    text.split("").forEach(char => {
-      const span = document.createElement("span");
-      span.innerText = char === " " ? "\u00A0" : char;
-      element.appendChild(span);
+  // Helper: split element text into words and characters
+  function splitToWordsAndChars(el) {
+    const text = el.textContent.trim();
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+
+    const wordsData = text.split(/\s+/).map((w) => {
+      const word = document.createElement('span');
+      word.className = 'word';
+
+      const chars = [...w].map((c) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = c;
+        word.appendChild(span);
+        return span;
+      });
+
+      // Keep spacing fidelity using nbsp
+      const space = document.createElement('span');
+      space.className = 'space';
+      space.textContent = '\u00A0';
+      word.appendChild(space);
+
+      el.appendChild(word);
+      return { word, chars };
     });
-    return element.querySelectorAll("span");
+
+    // Remove trailing space from last word
+    const lastSpace = el.querySelector('.word:last-child .space');
+    if (lastSpace) lastSpace.remove();
+
+    return wordsData;
   }
 
-  // grab all h1 inside .split-line-anim
-  document.querySelectorAll(".split-line-anim h1").forEach(heading => {
-    const chars = splitTextToSpans(heading);
+  // Helper: wrap visual lines by grouping words with the same offsetTop
+  function wrapLines(el) {
+    const words = Array.from(el.querySelectorAll('.word'));
+    const lines = [];
+    let currentLine = [];
+    let currentTop = null;
 
-    gsap.from(chars, {
-      scrollTrigger: {
-        trigger: heading,
-        toggleActions: "restart pause resume reverse",
-        start: "top 80%" // tweak this for earlier/later trigger
-      },
-      y: 80,
-      opacity: 0,
-      duration: 0.6,
-      ease: "circ.out",
-      stagger: 0.03
+    words.forEach((w) => {
+      const top = w.offsetTop;
+      if (currentTop === null) currentTop = top;
+
+      if (Math.abs(top - currentTop) > 2) {
+        const lineWrap = document.createElement('span');
+        lineWrap.className = 'line';
+        el.insertBefore(lineWrap, currentLine[0]);
+        currentLine.forEach((n) => lineWrap.appendChild(n));
+        lines.push(lineWrap);
+
+        currentLine = [w];
+        currentTop = top;
+      } else {
+        currentLine.push(w);
+      }
     });
-  });
+
+    if (currentLine.length) {
+      const lineWrap = document.createElement('span');
+      lineWrap.className = 'line';
+      el.insertBefore(lineWrap, currentLine[0]);
+      currentLine.forEach((n) => lineWrap.appendChild(n));
+      lines.push(lineWrap);
+    }
+
+    return lines;
+  }
+
+  // Initialize GSAP text reveal with ScrollTrigger
+  function initSplitReveal() {
+    if (typeof gsap === 'undefined') return;
+    if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
+
+    document.querySelectorAll('.split-line-anim .reveal').forEach((heading) => {
+      splitToWordsAndChars(heading);
+      wrapLines(heading);
+
+      const chars = heading.querySelectorAll('.char');
+
+      gsap.set(chars, {
+        y: 60,
+        opacity: 0,
+        rotate: 6,
+        skewY: 6,
+        transformOrigin: '0% 100%',
+      });
+
+      gsap.to(chars, {
+        y: 0,
+        opacity: 1,
+        rotate: 0,
+        skewY: 0,
+        duration: 0.8,
+        ease: 'circ.out',
+        stagger: { each: 0.02, from: 'start' },
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 80%',
+          // No end needed for a one-shot enter animation
+          toggleActions: 'play none none none', // only play on enter; never reverse/reset
+          // once is not necessary here because we never reverse/reset anyway
+        }
+      });
+    });
+
+    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+  }
+  // Bootstrap: run after fonts (preferred) or on window load as fallback
+  (function bootstrap() {
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(initSplitReveal);
+    } else {
+      window.addEventListener('load', initSplitReveal);
+    }
+  })();
 
   //Skill Section's Card Animation
 
@@ -207,7 +296,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   // Cards and their initial rotations from the screenshots
   const cards = gsap.utils.toArray(".skill-card");
-  const rotations = [-12, 10, -5, 5, -2];
+  const rotations = [-12, 10, -5, 5, -2, 4];
 
   // Place all cards off-screen initially and set rotation
   cards.forEach((card, index) => {
@@ -248,7 +337,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             (1 - (cardStart + progressPerCard));
 
           if (remainingProgress > 0) {
-            const distanceMultiplier = 1 - index * 0.15;
+            const distanceMultiplier = 1 - index * 0.18;
 
             // Drift left and slightly upward based on viewport
             xPos = -window.innerWidth * 0.3 * distanceMultiplier * remainingProgress;
@@ -265,5 +354,66 @@ document.addEventListener("DOMContentLoaded", (event) => {
         });
       });
     }
+  });
+
+  // Contact Form Section
+
+  const form = document.getElementById('contact-form');
+  const ok = document.getElementById('ok');
+  const fields = {
+    first: document.getElementById('firstName'),
+    last: document.getElementById('lastName'),
+    email: document.getElementById('email'),
+    msg: document.getElementById('message')
+  };
+  const errors = {
+    first: document.getElementById('err-first'),
+    last: document.getElementById('err-last'),
+    email: document.getElementById('err-email'),
+    msg: document.getElementById('err-msg')
+  };
+
+  function showError(el, errEl, cond) {
+    errEl.style.display = cond ? 'block' : 'none';
+    if (cond) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+  }
+
+  function validate() {
+    const v = {
+      first: !fields.first.value.trim(),
+      last: !fields.last.value.trim(),
+      email: !fields.email.validity.valid,
+      msg: fields.msg.value.trim().length < 50
+    };
+    showError(fields.first, errors.first, v.first);
+    showError(fields.last, errors.last, v.last);
+    showError(fields.email, errors.email, v.email);
+    showError(fields.msg, errors.msg, v.msg);
+    return !(v.first || v.last || v.email || v.msg);
+  }
+
+  form.addEventListener('input', validate);
+  form.addEventListener('submit', async (e) => {
+    if (!validate()) { e.preventDefault(); return; }
+
+    // If using an external form endpoint (e.g., FormSubmit, Getform, Formcarry)
+    // the standard POST submit will work without extra JS.
+    // If using EmailJS, uncomment the block below and configure service/template/user IDs.
+
+
+    e.preventDefault();
+    try {
+      await emailjs.send('service_mxshe2e', 'template_jtx8c18', {
+        firstName: fields.first.value,
+        lastName: fields.last.value,
+        email: fields.email.value,
+        message: fields.msg.value
+      }, '2KE1Abs0nB-KGgJcv');
+      ok.style.display = 'inline';
+      form.reset();
+    } catch (err) {
+      alert('Failed to send. Please try again.');
+    }
+
   });
 });

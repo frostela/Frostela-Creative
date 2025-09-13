@@ -246,6 +246,21 @@ main {
   text-align: center;
 }
 
+.reveal {
+/* display: inline-block; */
+}
+
+.reveal .line {
+display: block;
+overflow: hidden;
+}
+
+.reveal .word,
+.reveal .char {
+display: inline-block;
+will-change: transform, opacity;
+}
+
 .in-about-me {
   width: 100%;
   display: flex;
@@ -297,7 +312,7 @@ main {
   padding: 40px 0 20px 0;
 }
 
-.sticky-text p {
+.sticky-text h1 {
   font-size: 5vw;
   font-family: "Akira", sans-serif;
   text-align: center;
@@ -326,27 +341,54 @@ main {
   filter: saturate(0.3);
   transition: 500ms;
   cursor: pointer;
+  transition: 500ms;
 }
 
 .website-ss:hover {
   filter: none;
 }
 
-.website-logo {
-  width: 60%;
+
+
+.website .butts{
+  position: absolute;
+  z-index: 10;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  justify-content: space-between;
+  display: none;
+  transition: 500ms;
 }
 
-.website-description {
+.website .butts a{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  background: rgba(109, 109, 109, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(235, 235, 235, 0.3);
+  padding: 15px 25px;
+  margin: 15px 12px;
+  border-radius: 7px;
+  font-family: "Archivo", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.website-ss:hover~.butts{
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 15%;
-
+  transition: 700ms;
 }
 
-.website-description p {
-  font-size: 1.2rem;
-  font-family: Helvetica, Arial, sans-serif;
+.butts:hover{
+  display: flex;
+  background: rgrgba(82, 82, 82, 0.2)
+}
+
+.butts:hover~.website-ss{
+  filter: none;
 }
 
 /* Helping Brands */
@@ -660,4 +702,198 @@ main {
   font-size: 1.1rem;
   color: #313131;
   padding-bottom: 25px;
+}
+
+/* Contact Me Section */
+
+#contact-me{
+  padding: 10px 0 50px;
+}
+
+#contact-me h1 {
+  font-size: 7vw;
+  font-family: "Akira", sans-serif;
+  text-align: center;
+}
+
+#contact-me .wrap {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+}
+
+#contact-me .card {
+  padding: 28px;
+  width: 100%;
+  height: 80%;
+}
+
+#contact-form{
+  width: 40%;
+}
+
+.wrap .place{
+
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  width: 40%;
+}
+
+.place h3{
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+/* Flex */
+#contact-me .flex {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+#contact-me .fullname{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+}
+
+#firstName, #lastName{
+  width: 50%;
+}
+
+/* Labels and fields */
+label {
+  display: block;
+  margin: 0 0 5px;
+  font-size: 1rem;
+  color: #000000;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px 0 30px 0;
+  border: none;
+  border-bottom: 2px solid #000000b4 !important;
+  color: #000000 !important;
+  outline: none;
+  resize: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #292929;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(96, 165, 250, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.help {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Actions */
+#contact-me .row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+#contact-me button {
+  appearance: none;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 30px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(180deg, #1a1a1a, #000000);
+  cursor: pointer;
+  transition:
+    transform 0.06s ease-in,
+    box-shadow 0.2s;
+}
+
+#contact-me button:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 16px rgba(96, 165, 250, 0.26);
+}
+
+/* Messages */
+#contact-me .error {
+  display: none;
+  color: #f87171;
+  font-size: 12px;
+}
+
+#contact-me .ok {
+  display: none;
+  color: #86efac;
+  font-size: 13px;
+}
+
+/* Footer Section */
+footer{
+  padding: 50px 20px 50px 20px;
+}
+
+footer .links{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.socials{
+  display: flex;
+  flex-direction: column;
+}
+
+.socials a{
+  list-style: none;
+  text-decoration: none;
+  color: #292929;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: 600ms;
+}
+
+.email a{
+  color: #292929;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  list-style: none;
+  text-decoration: none;
+  transition: 600ms;
+}
+
+.email a:hover{
+  color: #000000;
+}
+
+.socials a:hover{
+  color: #000000;
+}
+
+.privacy{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.privacy p{
+  font-size: 0.8rem;
+  color: #525252;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
 }
