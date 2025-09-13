@@ -16,7 +16,11 @@
         "three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js"
       }
     }
-  </script>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        emailjs.init({ publicKey: '2KE1Abs0nB-KGgJcv' }); // run once before any send
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -393,7 +397,8 @@
                     <h3>2025</h3>
                 </div>
 
-                <form id="contact-form" action="ACTION_URL" method="POST" novalidate>
+                <form id="contact-form" action="https://api.emailjs.com/api/v1.0/email/send-form" method="POST"
+                    novalidate>
                     <div class="flex">
                         <label for="fullname">Name (required)</label>
 
@@ -443,7 +448,8 @@
             <div class="socials">
                 <a href="https://www.linkedin.com/in/frostela/"><span style="color: #5861FF;">/</span>LinkedIn</a>
                 <a href="https://wa.me/918697467676"><span style="color: #079600;">/</span>Whatsapp</a>
-                <a href="https://www.instagram.com/crafted_frostela/"><span style="color: #BF00FF;">/</span>Instagram</a>
+                <a href="https://www.instagram.com/crafted_frostela/"><span
+                        style="color: #BF00FF;">/</span>Instagram</a>
             </div>
             <div class="email">
                 <a href="email@frostela.com">/email@frostela.com</a>
@@ -451,7 +457,8 @@
         </div>
 
         <div class="big-logo">
-            <img  style="width: 100%; padding: 20px 0 10px;" src="/contents/images/crafted-frostela-logo-big.png" alt="Crafted Frostela Big logo">
+            <img style="width: 100%; padding: 20px 0 10px;" src="/contents/images/crafted-frostela-logo-big.png"
+                alt="Crafted Frostela Big logo">
         </div>
         <div class="privacy">
             <p>© All Right Reserved. 2025 Crafted. Frostela</p>
@@ -464,6 +471,8 @@
     <script src="/oneko.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    
 
 </body>
 

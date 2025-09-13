@@ -357,7 +357,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   // Contact Form Section
-
   const form = document.getElementById('contact-form');
   const ok = document.getElementById('ok');
   const fields = {
@@ -395,25 +394,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
   form.addEventListener('input', validate);
   form.addEventListener('submit', async (e) => {
     if (!validate()) { e.preventDefault(); return; }
-
-    // If using an external form endpoint (e.g., FormSubmit, Getform, Formcarry)
-    // the standard POST submit will work without extra JS.
-    // If using EmailJS, uncomment the block below and configure service/template/user IDs.
-
-
     e.preventDefault();
+
     try {
-      await emailjs.send('service_mxshe2e', 'template_jtx8c18', {
-        firstName: fields.first.value,
-        lastName: fields.last.value,
-        email: fields.email.value,
-        message: fields.msg.value
-      }, '2KE1Abs0nB-KGgJcv');
+      await emailjs.send(
+        'service_mxshe2e',
+        'template_jtx8c18',
+        {
+          firstName: fields.first.value,
+          lastName: fields.last.value,
+          email: fields.email.value,
+          message: fields.msg.value
+        },
+        { publicKey: '2KE1Abs0nB-KGgJcv' } // v4 pattern: options object
+      );
       ok.style.display = 'inline';
       form.reset();
     } catch (err) {
       alert('Failed to send. Please try again.');
     }
-
   });
 });
