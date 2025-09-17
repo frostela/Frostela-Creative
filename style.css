@@ -238,63 +238,133 @@ main {
 
 #about-me {
   padding: 50px 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+#about-me-wrapper{
+
+}
+
+#top-div {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+  overflow: visible;
 }
 
 #about-me h1 {
-  font-size: 7vw;
-  font-family: "Akira", sans-serif;
+  font-size: 15vw;
+  font-family: "Instrument Serif", serif;
   text-align: center;
+  font-weight: 100;
+  font-style: italic;
+  line-height: 0.8;
 }
 
-.reveal {
-/* display: inline-block; */
+.website-designer-box {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  align-items: flex-start;
+}
+
+.website-designer-box div {
+  border-radius: 15px;
+  background-color: #FF0014;
+  padding: 5px 30px;
+  flex-grow: 0;
+  z-index: 6;
+}
+
+.website-designer-box h5 {
+  font-size: 3.3rem;
+  font-family: "Instrument Serif", serif;
+  font-weight: 100;
+  width: fit-content;
+
 }
 
 .reveal .line {
-display: block;
-overflow: hidden;
+  display: block;
+  overflow: visible;
 }
 
 .reveal .word,
 .reveal .char {
-display: inline-block;
-will-change: transform, opacity;
+  display: inline-block;
+  will-change: transform, opacity;
 }
 
 .in-about-me {
-  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 40px;
   gap: 30px;
 }
 
 .img-with-points {
   display: flex;
+  flex-direction: row;
+}
+
+.img-with-points img{
+  margin-left: 20px;
+  padding-top: 3px;
+}
+
+.about-me-text{
+  display: flex;
   flex-direction: column;
-  width: 18%;
-  gap: 10px;
-}
-
-.points h3 {
-  font-size: 1.3rem;
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  text-align: right;
-}
-
-.about-me-text h2 {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 3rem;
+  align-items: flex-start;
 }
 
 .about-me-text p {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  margin-top: 10px;
+  font-family: "Instrument Serif", serif;
+  font-size: 1.7rem;
+  font-weight: 100;
+  margin: 30px 25px;
   line-height: 1;
 }
+
+.arrow-wheel{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-right: 15%;
+  position: relative;
+  bottom: 2vw;
+  align-items: flex-start;
+}
+
+#arrow-div{
+  position: relative;
+  width: 4vw;
+  height: 4vw;
+  background-color: #FF0014;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 2vw;
+}
+
+#arrow-div img{
+  width: 60%;
+}
+
+.arrow-wheel #wheel{
+  aspect-ratio: 1/1;
+  width: 5vw;
+  height: 5vw;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 
 /* Sticky Section */
 
@@ -350,7 +420,7 @@ will-change: transform, opacity;
 
 
 
-.website .butts{
+.website .butts {
   position: absolute;
   z-index: 10;
   bottom: 0px;
@@ -361,10 +431,10 @@ will-change: transform, opacity;
   transition: 500ms;
 }
 
-.website .butts a{
+.website .butts a {
   text-decoration: none;
   color: rgb(0, 0, 0);
-  background: rgba(109, 109, 109, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -377,17 +447,16 @@ will-change: transform, opacity;
   font-size: 0.9rem;
 }
 
-.website-ss:hover~.butts{
+.website-ss:hover~.butts {
   display: flex;
   transition: 700ms;
 }
 
-.butts:hover{
+.butts:hover {
   display: flex;
-  background: rgrgba(82, 82, 82, 0.2)
 }
 
-.butts:hover~.website-ss{
+.butts:hover~.website-ss {
   filter: none;
 }
 
@@ -706,7 +775,7 @@ will-change: transform, opacity;
 
 /* Contact Me Section */
 
-#contact-me{
+#contact-me {
   padding: 10px 0 50px;
 }
 
@@ -721,7 +790,7 @@ will-change: transform, opacity;
   padding: 20px;
   display: flex;
   flex-direction: row;
-  justify-content:space-around;
+  justify-content: space-around;
 }
 
 #contact-me .card {
@@ -730,17 +799,17 @@ will-change: transform, opacity;
   height: 80%;
 }
 
-#contact-form{
+#contact-form {
   width: 40%;
 }
 
-.wrap .place{
+.wrap .place {
 
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   width: 40%;
 }
 
-.place h3{
+.place h3 {
   font-weight: 400;
   font-size: 1rem;
 }
@@ -752,14 +821,15 @@ will-change: transform, opacity;
   flex-direction: column;
 }
 
-#contact-me .fullname{
+#contact-me .fullname {
   display: flex;
   flex-direction: row;
   gap: 20px;
   width: 100%;
 }
 
-#firstName, #lastName{
+#firstName,
+#lastName {
   width: 50%;
 }
 
@@ -842,23 +912,23 @@ textarea:focus {
 }
 
 /* Footer Section */
-footer{
+footer {
   padding: 50px 20px 50px 20px;
 }
 
-footer .links{
+footer .links {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: end;
 }
 
-.socials{
+.socials {
   display: flex;
   flex-direction: column;
 }
 
-.socials a{
+.socials a {
   list-style: none;
   text-decoration: none;
   color: #292929;
@@ -868,7 +938,7 @@ footer .links{
   transition: 600ms;
 }
 
-.email a{
+.email a {
   color: #292929;
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
@@ -878,21 +948,21 @@ footer .links{
   transition: 600ms;
 }
 
-.email a:hover{
+.email a:hover {
   color: #000000;
 }
 
-.socials a:hover{
+.socials a:hover {
   color: #000000;
 }
 
-.privacy{
+.privacy {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.privacy p{
+.privacy p {
   font-size: 0.8rem;
   color: #525252;
   font-family: "Archivo", Arial, Helvetica, sans-serif;

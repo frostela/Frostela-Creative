@@ -17,14 +17,23 @@
       }
     }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-        emailjs.init({ publicKey: '2KE1Abs0nB-KGgJcv' }); // run once before any send
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "2KE1Abs0nB-KGgJcv",
+            });
+        })();
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.11/dist/lenis.css">
 </head>
@@ -100,24 +109,37 @@
             </div>
         </section>
 
-        <section id="about-me">
-            <div class="split-line-anim">
-                <h1 class="reveal">ABOUT ME</h1>
-            </div>
-            <div class="in-about-me">
-                <div class="img-with-points">
-                    <img src="/contents/images/Mainak Das.jpg" alt="Mainak Das's image">
-                    <div class="points">
-                        <h3>/ WEB DESIGN</h3>
-                        <h3>/ WEB DEVOLOPMENT</h3>
-                        <h3>/ GRAPHICS DESIGN</h3>
+        <section id="about-me" style="background-color: #ECE7E1;">
+            <div id="about-me-wrapper">
+                <div class="split-line-anim" id="top-div">
+                    <h1 class="reveal">HALOO</h1>
+                    <div class="website-designer-box">
+                        <div>
+                            <h5>website</h5>
+                        </div>
+                        <div style="left: 100px; bottom: 25px; position: relative; padding: 5px 45px; z-index: 5;">
+                            <h5>designer</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="about-me-text">
-                    <h2>Mainak Das // Frostela</h2>
-                    <p>A designer and web developer who loves creating clean, minimal,
-                        and impactful <br>websites that help brands stand out.
-                    </p>
+                <div class="in-about-me" class="split-line-anim">
+                    <div class="img-with-points">
+                        <h1 class="reveal" style="position: relative; right: 10px;">I'M</h1>
+                        <img src="/contents/images/image 142.png" alt="Mainak Das's image">
+                        <div class="about-me-text">
+                            <h1 style="position: relative; right: 55px;">MAINAK</h1>
+                            <p>A designer and web developer who loves creating<br>clean, minimal, and
+                                impactful<br>websites
+                                that help brands stand out.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrow-wheel">
+                    <div id="arrow-div">
+                        <img src="/contents/images/Arrow.png" alt="Arrow">
+                    </div>
+                    <img id="wheel" src="/contents/images/wheel.png" alt="wheel">
                 </div>
             </div>
         </section>
@@ -472,7 +494,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 
-    
+
 
 </body>
 
