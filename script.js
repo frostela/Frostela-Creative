@@ -16,27 +16,6 @@ Array.from(hoverElements).forEach(element => {
   // });
 });
 
-// Horizental scroll of Website List
-
-
-
-
-// Hovering effect
-
-const posters = document.querySelectorAll('.poster');  // all posters
-const spans = document.querySelectorAll('p span');     // all desc spans
-
-posters.forEach((poster, index) => {
-  poster.addEventListener('mouseenter', () => {
-    spans.forEach(span => span.style.color = 'grey');  // reset all
-    spans[index].style.color = 'white';                // highlight matching one
-  });
-
-  poster.addEventListener('mouseleave', () => {
-    spans[index].style.color = 'grey';                 // reset on hover out
-  });
-});
-
 // Reasons Drag
 
 const slider = document.querySelector('.reasons');
@@ -150,26 +129,21 @@ requestAnimationFrame(raf)
 document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger)
 
-  const contents = gsap.utils.toArray(".website-list .website")
-  const gap = 10; // same as your CSS gap
-  const totalShift = contents.length > 1
-    ? (contents.length - 1) * (contents[0].offsetWidth + gap)
-    : 0;
+  const container = document.querySelector('.website-list');
+  const totalShift = container.scrollWidth - window.innerWidth;
 
-  gsap.to(contents, {
+  gsap.to(container, {
     x: -totalShift,
     ease: "none",
     scrollTrigger: {
-      trigger: ".sticky-section", // pin the whole section
+      trigger: ".sticky-section",
       start: "top top",
-      end: () => "+=" + totalShift,
+      end: () => `+=${totalShift}`,
       pin: true,
       scrub: 1,
       anticipatePin: 1
     }
-  })
-
-
+  });
 
   // Helper: split element text into words and characters
   function splitToWordsAndChars(el) {
