@@ -130,20 +130,50 @@ document.addEventListener("DOMContentLoaded", (event) => {
   gsap.registerPlugin(ScrollTrigger)
 
   const container = document.querySelector('.website-list');
-  const totalShift = container.scrollWidth - window.innerWidth;
+  const websiteCards = gsap.utils.toArray('.website-list .website');  // renamed variable
+  const totalWidth = container.scrollWidth - window.innerWidth;
+
+  const snapPoints = websiteCards.map((card, i) => i / (websiteCards.length - 1));
 
   gsap.to(container, {
-    x: -totalShift,
+    x: -totalWidth,
     ease: "none",
     scrollTrigger: {
-      trigger: ".sticky-section",
-      start: "top top",
-      end: () => `+=${totalShift}`,
-      pin: true,
+      trigger: '.sticky-section',
+      start: 'top top',
+      end: () => '+=' + totalWidth,
       scrub: 1,
-      anticipatePin: 1
+      pin: true,
+      anticipatePin: 1,
+      snap: {
+        snapTo: snapPoints,
+        duration: { min: 0.2, max: 0.5 },
+        ease: "power1.inOut"
+      }
     }
   });
+
+
+  // Initialize SplitType on the headings
+  let typeSplit = new SplitType('[animate]', {
+    types: 'lines, words, chars',
+    tagName: 'span'
+  });
+
+  // Animate each word with GSAP, tied to scroll
+  gsap.from('[animate] .word', {
+    opacity: 0.3,
+    duration: 0.5,
+    ease: 'power1.out',
+    stagger: 0.1,
+    scrollTrigger: {
+      trigger: '[animate]',
+      start: 'top 100%',
+      end: 'bottom 60%',
+      scrub: true
+    }
+  });
+
 
   // Helper: split element text into words and characters
   function splitToWordsAndChars(el) {

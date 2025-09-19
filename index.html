@@ -35,7 +35,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&family=Krona+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.11/dist/lenis.css">
+
 </head>
 
 <body>
@@ -50,33 +53,33 @@
     <div class="marquee">
         <div class="marquee-content">
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
             <span>OPEN TO WORK</span>
-            <span>•</span>
+            <div></div>
         </div>
     </div>
 
@@ -115,19 +118,23 @@
                     <h1 class="reveal">HALOO</h1>
                     <div class="website-designer-box">
                         <div>
-                            <h5>website</h5>
+                            <h5 style="position: relative; z-index: 7;">website</h5>
                         </div>
-                        <div style="left: 100px; bottom: 25px; position: relative; padding: 5px 45px; z-index: 5;">
-                            <h5>designer</h5>
+                        <div style="left: 100px; bottom: 25px; position: relative; padding: 5px 45px;">
+                            <h5 style="display: block; position: relative; z-index: 7;">designer</h5>
                         </div>
                     </div>
                 </div>
-                <div class="in-about-me" class="split-line-anim">
+                <div class="in-about-me">
                     <div class="img-with-points">
-                        <h1 class="reveal" style="position: relative; right: 10px;">I'M</h1>
+                        <div class="split-line-anim">
+                            <h1 class="reveal">I'M</h1>
+                        </div>
                         <img src="/contents/images/image 142.png" alt="Mainak Das's image">
                         <div class="about-me-text">
-                            <h1 style="position: relative; right: 55px;">MAINAK</h1>
+                            <div class="split-line-anim">
+                                <h1 style="position: relative; right: 55px;" class="reveal">MAINAK</h1>
+                            </div>
                             <p>A designer and web developer who loves creating<br>clean, minimal, and
                                 impactful<br>websites
                                 that help brands stand out.
@@ -149,8 +156,10 @@
             <div class="website-list">
 
                 <div class="website">
-                    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 150px;">
-                        <h1>My<br>Works<br><img style="width: 40%;" src="/contents/images/Arrow-right.png" alt="Arrow-right"></h1>
+                    <div
+                        style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 150px;">
+                        <h1>My<br>Works<br><img style="width: 40%;" src="/contents/images/Arrow-right.png"
+                                alt="Arrow-right"></h1>
                         <img class="website-ss" src="/contents/images/reeneu-ss.png" alt="Reeneu Website's Screenshoot">
                     </div>
                     <div class="butts">
@@ -200,9 +209,14 @@
         </section>
 
         <section>
-            <div id="helping-brand">
+            <div id="helping-brand" animate>
                 <div id="helping-heading">
-                    Helping <span>brands</span> build a powerful online presence through <span>websites</span>.
+                    <h2 style="text-align: center;">Helping <span class="accent">brands</span> build</h2>
+                    <h2 style="text-align: center; padding-left: 18vw;">a powerful</h2>
+                    <h2 style="text-align: right;">online presence through</h2>
+                    <h2 style="text-align: center;">websites &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp that</h2>
+                    <h2 style="padding-left: 5vw;">attract, engage, and</h2>
+                    <h2 style="text-align: center; padding-left: 40vw;">convert<span class="accent">.</span></h2>
                 </div>
                 <div class="helping-gif">
                     <img src="/contents/images/helping.gif" alt="Helping Gif">
@@ -492,8 +506,7 @@
     <script src="/oneko.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-
-
+    <script src="https://unpkg.com/split-type"></script>
 
 </body>
 

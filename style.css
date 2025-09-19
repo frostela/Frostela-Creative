@@ -54,7 +54,7 @@ main {
   padding-top: 120px;
 }
 
-/* Marquee Section */
+/* Marquee Section--------------------------------------------------------------------------------------------------------------- */
 
 .marquee {
   position: fixed;
@@ -74,14 +74,21 @@ main {
 
 .marquee-content span {
   white-space: nowrap;
-  padding-right: 1rem;
+  margin: 0 1.5rem;
   /* spacing between repeats */
-  font-size: 1.2rem;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 1rem;
+  font-weight: 100 !important;
+  font-family: "Krona One", Helvetica, sans-serif !important;
   color: #000000;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.marquee-content div{
+  width: 7px;
+  height: 7px;
+  margin: auto 0;
+  background-color: #FF0014;
 }
 
 @keyframes scroll {
@@ -96,7 +103,7 @@ main {
   /* shift by half since we duplicated text */
 }
 
-/* Cat Section */
+/* Cat Section------------------------------------------------------------------------------------------------------------------- */
 
 /* Cat sprite animation */
 .cat {
@@ -165,7 +172,7 @@ main {
 }
 
 
-/* Hero Section */
+/* Hero Section------------------------------------------------------------------------------------------------------------------ */
 
 #hero-section {
   position: relative;
@@ -234,7 +241,7 @@ main {
   margin-top: -2.7vw;
 }
 
-/* About me Section */
+/* About me Section------------------------------------------------------------------------------------------------------------- */
 
 #about-me {
   padding-top: 50px;
@@ -244,7 +251,7 @@ main {
 }
 
 #about-me-wrapper{
-
+ padding: 0 30px 0 50px;
 }
 
 #top-div {
@@ -260,7 +267,6 @@ main {
   font-family: "Instrument Serif", serif;
   text-align: center;
   font-weight: 100;
-  font-style: italic;
   line-height: 0.8;
 }
 
@@ -276,7 +282,6 @@ main {
   background-color: #FF0014;
   padding: 5px 30px;
   flex-grow: 0;
-  z-index: 6;
 }
 
 .website-designer-box h5 {
@@ -365,7 +370,7 @@ main {
 }
 
 
-/* Sticky Section */
+/* Sticky Section---------------------------------------------------------------------------------------------------------------- */
 
 .sticky-section {
   position: relative;
@@ -448,7 +453,7 @@ main {
   filter: none;
 }
 
-/* Helping Brands */
+/* Helping Brands Section-------------------------------------------------------------------------------------------------------- */
 
 #why-consider-me {
   padding-top: 50px;
@@ -463,20 +468,23 @@ main {
 }
 
 #helping-heading {
-  font-size: 4.5vw;
-  font-family: "Archivo", sans-serif;
-  font-weight: 500;
-  width: 55vw;
-  color: #303030;
+  width: 78vw;
 }
 
-#helping-heading span {
+#helping-heading h2 {
   font-weight: bold;
   color: #000000;
+  font-size: 4.5vw;
+  font-family: "Archivo", sans-serif;
+  font-weight: 400;
+  text-transform:uppercase;
 }
 
+#helping-heading .accent {
+  color: #FF0014;
+}
 .helping-gif img {
-  width: 25vw;
+  width: 15vw;
   border-radius: 10px;
 }
 
@@ -563,7 +571,7 @@ main {
   font-size: 1.2rem;
 }
 
-/* Services Section */
+/* Services Section------------------------------------------------------------------------------------------------------------- */
 
 #services {
   position: relative;
@@ -578,7 +586,7 @@ main {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 10px;
-  height: 350vh;
+  height: 400vh;
   justify-content: center;
   opacity: .067;
   overflow: hidden;
@@ -607,7 +615,7 @@ main {
 
 #cards {
   position: relative;
-  height: 350vh;
+  height: 400vh;
 }
 
 .card {
@@ -714,7 +722,7 @@ main {
   font-weight: 500;
 }
 
-/* Skills Section */
+/* Skills Section---------------------------------------------------------------------------------------------- */
 
 #skills {
   width: 100%;
@@ -761,7 +769,7 @@ main {
   padding-bottom: 25px;
 }
 
-/* Contact Me Section */
+/* Contact Me Section------------------------------------------------------------------------------------------------------------ */
 
 #contact-me {
   padding: 10px 0 50px;
@@ -899,7 +907,7 @@ textarea:focus {
   font-size: 13px;
 }
 
-/* Footer Section */
+/* Footer Section---------------------------------------------------------------------------------------------------------------- */
 footer {
   padding: 50px 20px 50px 20px;
 }
