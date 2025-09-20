@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -48,6 +52,76 @@ nav a {
   color: rgb(255, 255, 255);
   font-weight: 500;
   font-size: 1.4rem;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown menu hidden by default */
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* right below the parent */
+  right: 0;
+  padding-bottom: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-align: right;
+}
+
+.dropdown-menu a {
+  display: inline-block;   /* instead of block */
+  position: relative;      /* needed for ::after underline */
+  white-space: nowrap;
+}
+
+/* Each dropdown item */
+.dropdown-menu li {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0; 
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Animate child links (stagger effect) */
+.dropdown:hover .dropdown-menu li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown:hover .dropdown-menu li:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.dropdown:hover .dropdown-menu li:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.dropdown:hover .dropdown-menu li:nth-child(3) {
+  transition-delay: 0.15s;
 }
 
 main {
@@ -369,6 +443,11 @@ main {
   to { transform: rotate(360deg); }
 }
 
+.arrow-wheel #wheel:hover{
+  animation: spin 3s linear infinite;
+}
+
+
 
 /* Sticky Section---------------------------------------------------------------------------------------------------------------- */
 
@@ -476,7 +555,7 @@ main {
   color: #000000;
   font-size: 4.5vw;
   font-family: "Archivo", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   text-transform:uppercase;
 }
 
@@ -783,7 +862,7 @@ main {
 
 #contact-me .wrap {
   width: 100%;
-  padding: 20px;
+  padding: 50px 20px 0 20px; 
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -878,15 +957,19 @@ textarea:focus {
 #contact-me button {
   appearance: none;
   border: none;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   padding: 12px 30px;
   font-weight: 600;
   color: #ffffff;
-  background: linear-gradient(180deg, #1a1a1a, #000000);
+  background: linear-gradient(135deg, #96000c, #FF0014);
   cursor: pointer;
   transition:
     transform 0.06s ease-in,
     box-shadow 0.2s;
+}
+
+#contact-me button:hover{
+  background: linear-gradient(135deg, #610008, #ac000e);
 }
 
 #contact-me button:active {
@@ -903,8 +986,10 @@ textarea:focus {
 
 #contact-me .ok {
   display: none;
-  color: #86efac;
-  font-size: 13px;
+  color: #00812f;
+  font-size: 1rem;  
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-weight: 500;
 }
 
 /* Footer Section---------------------------------------------------------------------------------------------------------------- */

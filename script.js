@@ -361,11 +361,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   // Contact Form Section
+  (function () {
+    emailjs.init({
+      publicKey: "2KE1Abs0nB-KGgJcv", // ✅ init once
+    });
+  })();
+
   const form = document.getElementById('contact-form');
   const ok = document.getElementById('ok');
   const fields = {
-    first: document.getElementById('firstName'),
-    last: document.getElementById('lastName'),
+    first: document.querySelector('#firstName input'),
+    last: document.querySelector('#lastName input'),
     email: document.getElementById('email'),
     msg: document.getElementById('message')
   };
@@ -378,7 +384,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function showError(el, errEl, cond) {
     errEl.style.display = cond ? 'block' : 'none';
-    if (cond) el.setAttribute('aria-invalid', 'true'); else el.removeAttribute('aria-invalid');
+    if (cond) el.setAttribute('aria-invalid', 'true');
+    else el.removeAttribute('aria-invalid');
   }
 
   function validate() {
@@ -397,25 +404,39 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   form.addEventListener('input', validate);
   form.addEventListener('submit', async (e) => {
-    if (!validate()) { e.preventDefault(); return; }
     e.preventDefault();
+    if (!validate()) return;
 
     try {
       await emailjs.send(
-        'service_mxshe2e',
-        'template_jtx8c18',
+        'service_mxshe2e', // your service ID
+        'template_jtx8c18', // your template ID
         {
           firstName: fields.first.value,
           lastName: fields.last.value,
           email: fields.email.value,
           message: fields.msg.value
-        },
-        { publicKey: '2KE1Abs0nB-KGgJcv' } // v4 pattern: options object
+        }
       );
       ok.style.display = 'inline';
       form.reset();
     } catch (err) {
+      console.error(err);
       alert('Failed to send. Please try again.');
     }
   });
+
+  // Smooth scrtoll behavior
+
+  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  });
+
 });

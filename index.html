@@ -7,26 +7,7 @@
     <title>Crafted Frostela</title>
     <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="/3d-Model-js/styles.css">
-    <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-        "three/examples/jsm/controls/OrbitControls.js": "https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js",
-        "three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js"
-      }
-    }
-    </script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-    </script>
-    <script type="text/javascript">
-        (function () {
-            emailjs.init({
-                publicKey: "2KE1Abs0nB-KGgJcv",
-            });
-        })();
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,8 +16,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&family=Krona+One&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Instrument+Serif:ital@0;1&family=Krona+One&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.11/dist/lenis.css">
 
 </head>
@@ -47,7 +29,16 @@
             <img id="crafted" src="contents/images/Crafted.png" alt="Crafted">
             <img id="Frostela" src="contents/images/Frostela.png" alt="Frostela">
         </div>
-        <a href="demo.html">Menu</a>
+        <ul>
+            <li class="dropdown">
+                <a href="#">Menu</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#Works">Work</a></li>
+                    <li><a href="#about-me">About</a></li>
+                    <li><a href="#contact-me">Contact</a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
 
     <div class="marquee">
@@ -151,7 +142,7 @@
             </div>
         </section>
 
-        <section class="sticky-section">
+        <section class="sticky-section" id="Works">
 
             <div class="website-list">
 
@@ -432,8 +423,7 @@
                     <h3>2025</h3>
                 </div>
 
-                <form id="contact-form" action="https://api.emailjs.com/api/v1.0/email/send-form" method="POST"
-                    novalidate>
+                <form id="contact-form" method="POST" novalidate>
                     <div class="flex">
                         <label for="fullname">Name (required)</label>
 
@@ -469,7 +459,7 @@
 
                     <div class="row">
                         <button type="submit">Submit</button>
-                        <span class="ok" id="ok">Sent! Check inbox.</span>
+                        <span class="ok" id="ok">Message Sent.</span>
                     </div>
                 </form>
 
