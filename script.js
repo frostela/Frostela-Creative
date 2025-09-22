@@ -111,8 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Initialize Lenis
 const lenis = new Lenis({
+  lerp: 0.1,
+  wheelMultiplier:0.7,
+  infinite:false,
   autoRaf: false,  // let us control raf manually for GSAP sync
-  duration: 1.4,
+  duration: 0.9,
   easing: (t) => 1 - Math.pow(1 - t, 3),
   smoothWheel: true,
   smoothTouch: true,
@@ -127,32 +130,7 @@ requestAnimationFrame(raf)
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  gsap.registerPlugin(ScrollTrigger)
-
-  const container = document.querySelector('.website-list');
-  const websiteCards = gsap.utils.toArray('.website-list .website');  // renamed variable
-  const totalWidth = container.scrollWidth - window.innerWidth;
-
-  const snapPoints = websiteCards.map((card, i) => i / (websiteCards.length - 1));
-
-  gsap.to(container, {
-    x: -totalWidth,
-    ease: "none",
-    scrollTrigger: {
-      trigger: '.sticky-section',
-      start: 'top top',
-      end: () => '+=' + totalWidth,
-      scrub: 1,
-      pin: true,
-      anticipatePin: 1,
-      snap: {
-        snapTo: snapPoints,
-        duration: { min: 0.2, max: 0.5 },
-        ease: "power1.inOut"
-      }
-    }
-  });
-
+  gsap.registerPlugin(ScrollTrigger);
 
   // Initialize SplitType on the headings
   let typeSplit = new SplitType('[animate]', {

@@ -21,7 +21,6 @@ html{
 }
 
 body {
-  width: 100%;
   background-color: #ECE7E1;
   overflow-x: hidden;
 }
@@ -36,10 +35,8 @@ nav {
   position: fixed;
   z-index: 10;
   background: transparent;
-  /* ✅ ensure it’s see-through */
   mix-blend-mode: difference;
-  /* ✅ apply blend mode here */
-
+  box-sizing: border-box;
 }
 
 #Frostela {
@@ -453,20 +450,29 @@ main {
 
 .sticky-section {
   position: relative;
-  padding: 0 20px 0 20px;
-  height: 90vh;
+  padding: 0 20px;
+  height: fit-content;
+}
+
+.sticky-section span{
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 11;
+  font-family: "archivo", serif;
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
 /* Website List Section */
 
 
 .website-list {
-  width: 300vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 10px;
-  overflow-x: hidden;
-  padding: 150px 0 20px 0;
+  overflow-x: auto;
+  margin-left: 70px;
 }
 
 .website h1 {
@@ -478,9 +484,15 @@ main {
 }
 
 .website {
-  will-change: transform;
+  position: relative;
+  padding: 5px;
 }
 
+.image-wrapper {
+  position: relative;
+  display: inline-block; /* shrink-wrap to image */
+  transition: 500ms;
+}
 
 .website-ss {
   border: black 2px solid;
@@ -492,44 +504,20 @@ main {
   box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.27);
 }
 
-.website .butts {
+.image-wrapper p{
+  font-family: "archivo", serif;
+  font-weight: 400;
+  font-size: 1.5rem;
   position: absolute;
   z-index: 10;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  justify-content: space-between;
-  display: none;
-  transition: 500ms;
+  color: rgb(255, 255, 255);
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: 600ms;
 }
 
-.website .butts a {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(235, 235, 235, 0.3);
-  padding: 15px 25px;
-  margin: 15px 12px;
-  border-radius: 7px;
-  font-family: "Archivo", sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.website-ss:hover~.butts {
-  display: flex;
-  transition: 700ms;
-}
-
-.butts:hover {
-  display: flex;
-}
-
-.butts:hover~.website-ss {
-  filter: none;
+.image-wrapper:hover p {
+opacity: 1;
 }
 
 /* Helping Brands Section-------------------------------------------------------------------------------------------------------- */
@@ -573,7 +561,7 @@ main {
   overflow: hidden;
   background: #000000;
   z-index: 9;
-  padding: 40px;
+  padding: 30px;
 }
 
 .consider-marquee-content {
@@ -586,12 +574,13 @@ main {
   white-space: nowrap;
   padding-right: 5rem;
   /* spacing between repeats */
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 500;
-  font-family: "Archivo", sans-serif;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
   color: #E0FE7F;
   padding-top: 5px;
   padding-bottom: 5px;
+  text-transform: lowercase;
 }
 
 /* Reasons */
