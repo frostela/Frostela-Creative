@@ -1,4 +1,4 @@
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -39,6 +39,10 @@ nav {
   box-sizing: border-box;
 }
 
+.logo img {
+  width: 45%;
+}
+
 #Frostela {
   margin-left: 5px;
 }
@@ -60,7 +64,8 @@ nav a {
 /* Dropdown menu hidden by default */
 .dropdown-menu {
   position: absolute;
-  top: 100%; /* right below the parent */
+  top: 100%;
+  /* right below the parent */
   right: 0;
   padding-bottom: 8px;
   opacity: 0;
@@ -71,8 +76,10 @@ nav a {
 }
 
 .dropdown-menu a {
-  display: inline-block;   /* instead of block */
-  position: relative;      /* needed for ::after underline */
+  display: inline-block;
+  /* instead of block */
+  position: relative;
+  /* needed for ::after underline */
   white-space: nowrap;
 }
 
@@ -87,7 +94,7 @@ nav a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0; 
+  bottom: 0;
   width: 0;
   height: 2px;
   background: #fff;
@@ -114,9 +121,11 @@ nav a:hover::after {
 .dropdown:hover .dropdown-menu li:nth-child(1) {
   transition-delay: 0.05s;
 }
+
 .dropdown:hover .dropdown-menu li:nth-child(2) {
   transition-delay: 0.1s;
 }
+
 .dropdown:hover .dropdown-menu li:nth-child(3) {
   transition-delay: 0.15s;
 }
@@ -155,7 +164,7 @@ main {
   padding-bottom: 5px;
 }
 
-.marquee-content div{
+.marquee-content div {
   width: 7px;
   height: 7px;
   margin: auto 0;
@@ -250,8 +259,6 @@ main {
 }
 
 .hero-video-div {
-  width: calc(100%-40px);
-  height: 450px;
   min-height: 60vh;
   position: relative;
   overflow: hidden;
@@ -261,8 +268,8 @@ main {
 
 .hero-video {
   width: 100%;
-  height: 450px;
-  min-height: 60vh;
+  height: 50lvh;
+  min-height: 70vh;
   object-fit: cover;
   filter: blur(3px);
   scale: 1.1;
@@ -270,9 +277,9 @@ main {
 
 .hero-headings {
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -45%);
+  transform: translate(-50%, -50%);
   text-align: center;
   color: white;
   font-size: 2rem;
@@ -315,20 +322,20 @@ main {
 /* About me Section------------------------------------------------------------------------------------------------------------- */
 
 #about-me {
-  padding-top: 50px;
+  padding: 50px 20px 0 20px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
 }
 
-#about-me-wrapper{
- padding: 0 30px 0 50px;
+#about-me-wrapper {
+  padding-left: 5vw;
 }
 
 #top-div {
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 30px;
   align-items: center;
   overflow: visible;
 }
@@ -339,6 +346,7 @@ main {
   text-align: center;
   font-weight: 100;
   line-height: 0.8;
+  white-space: nowrap;
 }
 
 .website-designer-box {
@@ -382,14 +390,16 @@ main {
 .img-with-points {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
-.img-with-points img{
+.img-with-points img {
   margin-left: 20px;
   padding-top: 3px;
+  width: 30%;
 }
 
-.about-me-text{
+.about-me-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -403,7 +413,7 @@ main {
   line-height: 1;
 }
 
-.arrow-wheel{
+.arrow-wheel {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -413,7 +423,7 @@ main {
   align-items: flex-start;
 }
 
-#arrow-div{
+#arrow-div {
   position: relative;
   width: 4vw;
   height: 4vw;
@@ -424,11 +434,11 @@ main {
   bottom: 2vw;
 }
 
-#arrow-div img{
+#arrow-div img {
   width: 60%;
 }
 
-.arrow-wheel #wheel{
+.arrow-wheel #wheel {
   aspect-ratio: 1/1;
   width: 5vw;
   height: 5vw;
@@ -436,11 +446,16 @@ main {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.arrow-wheel #wheel:hover{
+.arrow-wheel #wheel:hover {
   animation: spin 3s linear infinite;
 }
 
@@ -450,11 +465,13 @@ main {
 
 .sticky-section {
   position: relative;
-  padding: 0 20px;
+  padding-left: 30px;
   height: fit-content;
+  display: flex;
+  flex-direction: row;
 }
 
-.sticky-section span{
+.sticky-section span {
   position: sticky;
   top: 50%;
   transform: translateY(-50%);
@@ -470,9 +487,9 @@ main {
 .website-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0px;
   overflow-x: auto;
-  margin-left: 70px;
+  margin-left: 30px;
 }
 
 .website h1 {
@@ -490,7 +507,8 @@ main {
 
 .image-wrapper {
   position: relative;
-  display: inline-block; /* shrink-wrap to image */
+  display: inline-block;
+  /* shrink-wrap to image */
   transition: 500ms;
 }
 
@@ -500,11 +518,9 @@ main {
   transition: 500ms;
   cursor: pointer;
   transition: 500ms;
-  border-radius: 10px;
-  box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.27);
 }
 
-.image-wrapper p{
+.image-wrapper p {
   font-family: "archivo", serif;
   font-weight: 400;
   font-size: 1.5rem;
@@ -517,7 +533,7 @@ main {
 }
 
 .image-wrapper:hover p {
-opacity: 1;
+  opacity: 1;
 }
 
 /* Helping Brands Section-------------------------------------------------------------------------------------------------------- */
@@ -544,12 +560,13 @@ opacity: 1;
   font-size: 4.5vw;
   font-family: "Archivo", sans-serif;
   font-weight: 500;
-  text-transform:uppercase;
+  text-transform: uppercase;
 }
 
 #helping-heading .accent {
   color: #FF0014;
 }
+
 .helping-gif img {
   width: 15vw;
   border-radius: 10px;
@@ -851,7 +868,7 @@ opacity: 1;
 
 #contact-me .wrap {
   width: 100%;
-  padding: 50px 20px 0 20px; 
+  padding: 50px 20px 0 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -957,7 +974,7 @@ textarea:focus {
     box-shadow 0.2s;
 }
 
-#contact-me button:hover{
+#contact-me button:hover {
   background: linear-gradient(135deg, #610008, #ac000e);
 }
 
@@ -976,7 +993,7 @@ textarea:focus {
 #contact-me .ok {
   display: none;
   color: #00812f;
-  font-size: 1rem;  
+  font-size: 1rem;
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
@@ -1036,4 +1053,35 @@ footer .links {
   font-size: 0.8rem;
   color: #525252;
   font-family: "Archivo", Arial, Helvetica, sans-serif;
+}
+
+
+/* 1200p Tab Versionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn */
+
+@media (max-width: 1024px) {
+  #about-me h1 {}
+
+  .word {
+    width: fit-content;
+  }
+
+  .website-designer-box h5 {
+    font-size: 2.5rem;
+  }
+
+  #about-me-wrapper {
+    padding-left: 2vw;
+  }
+
+  #arrow-div {
+    position: relative;
+    width: 5vw;
+    height: 5vw;
+    background-color: #FF0014;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 2vw;
+  }
+
 }
