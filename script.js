@@ -1,154 +1,135 @@
-
+// ---------------------------------------------------------- Hover Sound ------------------
 const hoverElements = document.getElementsByClassName('sound1');
 const hoverSound = document.getElementById('hoverSound');
 
-hoverSound.volume = 0.3; // adjust volume here 🎵
+if (hoverSound) {
+  hoverSound.volume = 0.3;
 
-Array.from(hoverElements).forEach(element => {
-  element.addEventListener('mouseover', function () {
-    hoverSound.currentTime = 0; // restart from beginning
-    hoverSound.play();
+  Array.from(hoverElements).forEach(element => {
+    element.addEventListener('mouseover', () => {
+      hoverSound.currentTime = 0;
+      hoverSound.play().catch(() => {});
+    });
+  });
+}
+
+// ------------------------------------------------- Drag Scroll (Reasons Section) ------------------
+const slider = document.querySelector('.reasons');
+if (slider) {
+  let isDown = false;
+  let startX, scrollLeft;
+
+  slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
   });
 
-  // element.addEventListener('mouseleave', function () {
-  //     hoverSound.pause();
-  //     hoverSound.currentTime = 0; // reset to beginning
-  // });
-});
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
 
-// Reasons Drag
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
 
-const slider = document.querySelector('.reasons');
-let isDown = false;
-let startX;
-let scrollLeft;
+  slider.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 2; // scroll speed multiplier
+    slider.scrollLeft = scrollLeft - walk;
+  });
+}
 
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  slider.classList.add('active');
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-});
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
-slider.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 2; // *2 = scroll speed multiplier
-  slider.scrollLeft = scrollLeft - walk;
-});
-
-// Card flipping 
-
+// ----------------------------------------------- Card Flipping on Scroll ------------------
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card-inner");
   const cardsSection = document.querySelector("#cards");
 
   function playSound(path) {
     const sound = new Audio(path);
-    sound.play();
+    sound.play().catch(() => {});
   }
 
-  // Scroll-based flipping
-  window.addEventListener("scroll", () => {
-    const sectionBottom = cardsSection.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
+  if (cards.length && cardsSection) {
+    window.addEventListener("scroll", () => {
+      const sectionBottom = cardsSection.getBoundingClientRect().bottom;
+      const windowHeight = window.innerHeight;
 
-    if (sectionBottom <= windowHeight + 50) {
-      cards.forEach((card, i) => {
-        setTimeout(() => {
-          if (!card.classList.contains("flipped")) {
-            card.classList.add("flipped");
-            playSound("./contents/sounds/card-flipping.mp3");
-          }
-        }, i * 300);
-      });
-    } else {
-      cards.forEach((card, i) => {
-        setTimeout(() => {
-          if (card.classList.contains("flipped")) {
-            card.classList.remove("flipped");
-            playSound("./contents/sounds/card-flipping.mp3");
-          }
-        }, i * 300);
-      });
-    }
-  });
+      if (sectionBottom <= windowHeight + 50) {
+        cards.forEach((card, i) => {
+          setTimeout(() => {
+            if (!card.classList.contains("flipped")) {
+              card.classList.add("flipped");
+              playSound("./contents/sounds/card-flipping.mp3");
+            }
+          }, i * 300);
+        });
+      } else {
+        cards.forEach((card, i) => {
+          setTimeout(() => {
+            if (card.classList.contains("flipped")) {
+              card.classList.remove("flipped");
+              playSound("./contents/sounds/card-flipping.mp3");
+            }
+          }, i * 300);
+        });
+      }
+    });
+  }
 });
 
+// ---------------------------------------------------- Card Hover Sound ------------------
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card");
-
-  // Preload hover sound
   const hoverSound = new Audio("./contents/sounds/card-flipping.mp3");
   hoverSound.preload = "auto";
 
   function playSound(audio) {
     const clone = audio.cloneNode();
-    clone.play().catch(() => { });
+    clone.play().catch(() => {});
   }
 
   cards.forEach(card => {
     card.addEventListener("mouseenter", () => {
-      // Only play if card is NOT already flipped
       if (!card.classList.contains("flipped")) {
         playSound(hoverSound);
+      } else {
+        playSound(hoverSound);
       }
-      else
-        playSound();
     });
   });
 });
 
-// Lenis Scroll
-
-// Initialize Lenis
+// -------------------------------------------------------- Lenis Smooth Scroll ------------------
 const lenis = new Lenis({
   lerp: 0.1,
   wheelMultiplier: 0.7,
-  infinite: false,
-  autoRaf: false,  // let us control raf manually for GSAP sync
   duration: 0.9,
   easing: (t) => 1 - Math.pow(1 - t, 3),
   smoothWheel: true,
   smoothTouch: true,
+  autoRaf: false, // we control raf manually
 });
 
-// RAF loop
-let refreshed = false;
 function raf(time) {
   lenis.raf(time);
-
-  if (!refreshed) {
-    ScrollTrigger.refresh(); // refresh once after first frame
-    refreshed = true;
-  }
-
-  ScrollTrigger.update();
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
 
-
-
-
-document.addEventListener("DOMContentLoaded", (event) => {
+// --------------------------------------------------- GSAP + SplitType Animations ------------------
+document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Initialize SplitType on the headings
   let typeSplit = new SplitType('[animate]', {
     types: 'lines, words, chars',
     tagName: 'span'
   });
 
-  // Animate each word with GSAP, tied to scroll
   gsap.from('[animate] .word', {
     opacity: 0.3,
     duration: 0.5,
@@ -162,8 +143,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
-
-  // Helper: split element text into words and characters
   function splitToWordsAndChars(el) {
     const text = el.textContent.trim();
     el.setAttribute('aria-label', text);
@@ -173,32 +152,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const word = document.createElement('span');
       word.className = 'word';
 
-      const chars = [...w].map((c) => {
+      [...w].forEach((c) => {
         const span = document.createElement('span');
         span.className = 'char';
         span.textContent = c;
         word.appendChild(span);
-        return span;
       });
 
-      // Keep spacing fidelity using nbsp
       const space = document.createElement('span');
       space.className = 'space';
       space.textContent = '\u00A0';
       word.appendChild(space);
 
       el.appendChild(word);
-      return { word, chars };
+      return { word };
     });
 
-    // Remove trailing space from last word
     const lastSpace = el.querySelector('.word:last-child .space');
     if (lastSpace) lastSpace.remove();
 
     return wordsData;
   }
 
-  // Helper: wrap visual lines by grouping words with the same offsetTop
   function wrapLines(el) {
     const words = Array.from(el.querySelectorAll('.word'));
     const lines = [];
@@ -234,11 +209,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return lines;
   }
 
-  // Initialize GSAP text reveal with ScrollTrigger
   function initSplitReveal() {
-    if (typeof gsap === 'undefined') return;
-    if (typeof ScrollTrigger !== 'undefined') gsap.registerPlugin(ScrollTrigger);
-
     document.querySelectorAll('.split-line-anim .reveal').forEach((heading) => {
       splitToWordsAndChars(heading);
       wrapLines(heading);
@@ -264,37 +235,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
         scrollTrigger: {
           trigger: heading,
           start: 'top 80%',
-          // No end needed for a one-shot enter animation
-          toggleActions: 'play none none none', // only play on enter; never reverse/reset
-          // once is not necessary here because we never reverse/reset anyway
+          toggleActions: 'play none none none',
         }
       });
     });
 
-    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    ScrollTrigger.refresh();
   }
-  // Bootstrap: run after fonts (preferred) or on window load as fallback
-  (function bootstrap() {
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(initSplitReveal);
-    } else {
-      window.addEventListener('load', initSplitReveal);
-    }
-  })();
 
-  //Skill Section's Card Animationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(initSplitReveal);
+  } else {
+    window.addEventListener('load', initSplitReveal);
+  }
+});
 
-  
-
-
-
-
-
-  // Contact Form Sectionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+// -------------------------------------------------------------------- Contact Form ------------------
+document.addEventListener("DOMContentLoaded", () => {
   (function () {
-    emailjs.init({
-      publicKey: "2KE1Abs0nB-KGgJcv", // ✅ init once
-    });
+    emailjs.init({ publicKey: "2KE1Abs0nB-KGgJcv" });
   })();
 
   const form = document.getElementById('contact-form');
@@ -338,16 +297,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (!validate()) return;
 
     try {
-      await emailjs.send(
-        'service_mxshe2e', // your service ID
-        'template_jtx8c18', // your template ID
-        {
-          firstName: fields.first.value,
-          lastName: fields.last.value,
-          email: fields.email.value,
-          message: fields.msg.value
-        }
-      );
+      await emailjs.send('service_mxshe2e', 'template_jtx8c18', {
+        firstName: fields.first.value,
+        lastName: fields.last.value,
+        email: fields.email.value,
+        message: fields.msg.value
+      });
       ok.style.display = 'inline';
       form.reset();
     } catch (err) {
@@ -355,18 +310,4 @@ document.addEventListener("DOMContentLoaded", (event) => {
       alert('Failed to send. Please try again.');
     }
   });
-
-  // Smooth scrtoll behaviorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
-
-  document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    });
-  });
-
 });
