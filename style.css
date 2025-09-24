@@ -661,6 +661,7 @@ main {
 #services {
   position: relative;
   width: 100%;
+  z-index: 2;
 }
 
 .noise {
@@ -815,6 +816,7 @@ main {
   position: relative;
   height: 100vh;
   overflow: hidden;
+  z-index: 3;
 }
 
 #skills h1 {

@@ -112,8 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
 // Initialize Lenis
 const lenis = new Lenis({
   lerp: 0.1,
-  wheelMultiplier:0.7,
-  infinite:false,
+  wheelMultiplier: 0.7,
+  infinite: false,
   autoRaf: false,  // let us control raf manually for GSAP sync
   duration: 0.9,
   easing: (t) => 1 - Math.pow(1 - t, 3),
@@ -122,11 +122,21 @@ const lenis = new Lenis({
 });
 
 // RAF loop
+let refreshed = false;
 function raf(time) {
-  lenis.raf(time)
-  requestAnimationFrame(raf)
+  lenis.raf(time);
+
+  if (!refreshed) {
+    ScrollTrigger.refresh(); // refresh once after first frame
+    refreshed = true;
+  }
+
+  ScrollTrigger.update();
+  requestAnimationFrame(raf);
 }
-requestAnimationFrame(raf)
+requestAnimationFrame(raf);
+
+
 
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -272,73 +282,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   })();
 
-  //Skill Section's Card Animation
+  //Skill Section's Card Animationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
-  gsap.ticker.lagSmoothing(0);
+  
 
-  // Cards and their initial rotations from the screenshots
-  const cards = gsap.utils.toArray(".skill-card");
-  const rotations = [-12, 10, -5, 5, -2, 4];
 
-  // Place all cards off-screen initially and set rotation
-  cards.forEach((card, index) => {
-    gsap.set(card, {
-      y: window.innerHeight,
-      rotate: rotations[index]
-    });
-  });
 
-  // ScrollTrigger that pins the section and drives the custom onUpdate
-  ScrollTrigger.create({
-    trigger: "#skills",
-    start: "top top",
-    end: `+=${window.innerHeight * 8}px`,
-    pin: true,
-    pinSpacing: true,
-    scrub: 1,
-    onUpdate: (self) => {
-      const progress = self.progress;             // 0 → 1
-      const totalCards = cards.length;
-      const progressPerCard = 1 / totalCards;
 
-      cards.forEach((card, index) => {
-        // progress slice this card is responsible for
-        const cardStart = index * progressPerCard;
-        let cardProgress = (progress - cardStart) / progressPerCard;
-        cardProgress = Math.min(Math.max(cardProgress, 0), 1);
 
-        // Default positions: slide upward from bottom
-        let yPos = window.innerHeight * (1 - cardProgress);
-        let xPos = 0;
-
-        // When a card is fully in (cardProgress === 1) and not the last one,
-        // compute remainingProgress to start drifting it diagonally.
-        if (cardProgress === 1 && index < totalCards - 1) {
-          const remainingProgress =
-            (progress - (cardStart + progressPerCard)) /
-            (1 - (cardStart + progressPerCard));
-
-          if (remainingProgress > 0) {
-            const distanceMultiplier = 1 - index * 0.18;
-
-            // Drift left and slightly upward based on viewport
-            xPos = -window.innerWidth * 0.3 * distanceMultiplier * remainingProgress;
-            yPos = -window.innerHeight * 0.3 * distanceMultiplier * remainingProgress;
-          }
-        }
-
-        // Apply instantly each tick
-        gsap.to(card, {
-          y: yPos,
-          x: xPos,
-          duration: 0,
-          ease: "none"
-        });
-      });
-    }
-  });
-
-  // Contact Form Section
+  // Contact Form Sectionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
   (function () {
     emailjs.init({
       publicKey: "2KE1Abs0nB-KGgJcv", // ✅ init once
@@ -404,7 +356,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 
-  // Smooth scrtoll behavior
+  // Smooth scrtoll behaviorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 
   document.querySelectorAll('nav a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
