@@ -8,81 +8,12 @@ if (hoverSound) {
   Array.from(hoverElements).forEach(element => {
     element.addEventListener('mouseover', () => {
       hoverSound.currentTime = 0;
-      hoverSound.play().catch(() => {});
+      hoverSound.play().catch(() => { });
     });
   });
 }
 
-// ------------------------------------------------- Drag Scroll (Reasons Section) ------------------
-const slider = document.querySelector('.reasons');
-if (slider) {
-  let isDown = false;
-  let startX, scrollLeft;
-
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true;
-    slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-
-  slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; // scroll speed multiplier
-    slider.scrollLeft = scrollLeft - walk;
-  });
-}
-
-// ----------------------------------------------- Card Flipping on Scroll ------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".card-inner");
-  const cardsSection = document.querySelector("#cards");
-
-  function playSound(path) {
-    const sound = new Audio(path);
-    sound.play().catch(() => {});
-  }
-
-  if (cards.length && cardsSection) {
-    window.addEventListener("scroll", () => {
-      const sectionBottom = cardsSection.getBoundingClientRect().bottom;
-      const windowHeight = window.innerHeight;
-
-      if (sectionBottom <= windowHeight + 50) {
-        cards.forEach((card, i) => {
-          setTimeout(() => {
-            if (!card.classList.contains("flipped")) {
-              card.classList.add("flipped");
-              playSound("./contents/sounds/card-flipping.mp3");
-            }
-          }, i * 300);
-        });
-      } else {
-        cards.forEach((card, i) => {
-          setTimeout(() => {
-            if (card.classList.contains("flipped")) {
-              card.classList.remove("flipped");
-              playSound("./contents/sounds/card-flipping.mp3");
-            }
-          }, i * 300);
-        });
-      }
-    });
-  }
-});
-
-// ---------------------------------------------------- Card Hover Sound ------------------
+// ------------------------------------------------------------------------ Card Hover Sound ------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll(".card");
   const hoverSound = new Audio("./contents/sounds/card-flipping.mp3");
@@ -90,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function playSound(audio) {
     const clone = audio.cloneNode();
-    clone.play().catch(() => {});
+    clone.play().catch(() => { });
   }
 
   cards.forEach(card => {
@@ -104,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// -------------------------------------------------------- Lenis Smooth Scroll ------------------
+// ---------------------------------------------------------------- Lenis Smooth Scroll ---------------------------------------------------------
 const lenis = new Lenis({
   lerp: 0.1,
   wheelMultiplier: 0.7,
@@ -121,17 +52,20 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// --------------------------------------------------- GSAP + SplitType Animations ------------------
+// ------------------------------------------------------------ GSAP + SplitType Animations --------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
+
+  // Animation A: Fade Words --------------------------------------------------------
 
   let typeSplit = new SplitType('[animate]', {
     types: 'lines, words, chars',
     tagName: 'span'
-  });
+  })
 
   gsap.from('[animate] .word', {
-    opacity: 0.3,
+    y: '100%',
+    opacity: 1,
     duration: 0.5,
     ease: 'power1.out',
     stagger: 0.1,
@@ -141,14 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
       end: 'bottom 60%',
       scrub: true
     }
-  });
 
+  })
+
+  // Animation B: Reveal Lines ---------------------------------------------------------
   function splitToWordsAndChars(el) {
     const text = el.textContent.trim();
     el.setAttribute('aria-label', text);
     el.textContent = '';
 
-    const wordsData = text.split(/\s+/).map((w) => {
+    text.split(/\s+/).forEach((w) => {
       const word = document.createElement('span');
       word.className = 'word';
 
@@ -165,13 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
       word.appendChild(space);
 
       el.appendChild(word);
-      return { word };
     });
 
+    // Remove trailing space
     const lastSpace = el.querySelector('.word:last-child .space');
     if (lastSpace) lastSpace.remove();
-
-    return wordsData;
   }
 
   function wrapLines(el) {
@@ -209,8 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return lines;
   }
 
-  function initSplitReveal() {
-    document.querySelectorAll('.split-line-anim .reveal').forEach((heading) => {
+  function initRevealAnimation() {
+    document.querySelectorAll('[animate="reveal"]').forEach((heading) => {
       splitToWordsAndChars(heading);
       wrapLines(heading);
 
@@ -244,11 +178,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(initSplitReveal);
+    document.fonts.ready.then(initRevealAnimation);
   } else {
-    window.addEventListener('load', initSplitReveal);
+    window.addEventListener('load', initRevealAnimation);
   }
 });
+
 
 // -------------------------------------------------------------------- Contact Form ------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -311,3 +246,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+// When the user clicks on the button, toggle between hiding and showing the dropdown content -----------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", () => {
+  const reasons = document.querySelectorAll(".reason");
+
+  reasons.forEach(reason => {
+    const paragraph = reason.querySelector("p");
+
+    reason.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      // Close all others
+      reasons.forEach(r => {
+        if (r !== reason) {
+          r.querySelector("p").classList.remove("show");
+        }
+      });
+
+      // Toggle this one
+      paragraph.classList.toggle("show");
+    });
+  });
+
+  // Close all if clicked outside
+  window.addEventListener("click", () => {
+    reasons.forEach(reason => {
+      reason.querySelector("p").classList.remove("show");
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const growDivs = document.querySelectorAll(".grow-width");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        // 🔥 uncomment next line if you want it to only trigger once
+        // observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove("show"); // remove if you want it only once
+      }
+    });
+  }, { 
+    root: null, 
+    threshold: 0, 
+    rootMargin: "0px 0px -15% 0px" 
+  });
+
+  growDivs.forEach(div => observer.observe(div));
+});
+
+

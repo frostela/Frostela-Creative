@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  background-color: #ECE7E1;
+  background-color: #f5f5f5;
   overflow-x: hidden;
 }
 
@@ -33,10 +33,10 @@ nav {
   padding: 20px;
   justify-content: space-between;
   position: fixed;
-  z-index: 10;
   background: transparent;
   mix-blend-mode: difference;
   box-sizing: border-box;
+  z-index: 10;
 }
 
 .logo img {
@@ -143,7 +143,7 @@ main {
   width: 100%;
   overflow: hidden;
   background: #E1E1E1;
-  z-index: 10;
+  z-index: 11;
 }
 
 .marquee-content {
@@ -461,7 +461,7 @@ main {
 
 
 
-/* Sticky Section---------------------------------------------------------------------------------------------------------------- */
+/* My Works Section---------------------------------------------------------------------------------------------------------------- */
 
 .sticky-section {
   position: relative;
@@ -488,7 +488,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0px;
-  overflow-x: auto;
+    overflow: visible;
   margin-left: 30px;
 }
 
@@ -503,6 +503,7 @@ main {
 .website {
   position: relative;
   padding: 5px;
+
 }
 
 .image-wrapper {
@@ -510,14 +511,20 @@ main {
   display: inline-block;
   /* shrink-wrap to image */
   transition: 500ms;
+  overflow: visible;
 }
 
 .website-ss {
-  border: black 2px solid;
   width: 50vw;
   transition: 500ms;
   cursor: pointer;
   transition: 500ms;
+  box-shadow: 3px 3px 18px -1px rgba(0, 0, 0, 0.41);
+
+}
+
+.website-ss:hover{
+
 }
 
 .image-wrapper p {
@@ -538,322 +545,107 @@ main {
 
 /* Helping Brands Section-------------------------------------------------------------------------------------------------------- */
 
-#why-consider-me {
-  padding-top: 50px;
-  overflow-y: visible;
-}
-
 #helping-brand {
   display: flex;
   justify-content: space-between;
-  padding: 50px 20px;
+  padding: 100px 20px;
   align-items: center;
 }
 
 #helping-heading {
-  width: 78vw;
+  width: 100vw;
 }
 
 #helping-heading h2 {
   font-weight: bold;
   color: #000000;
-  font-size: 4.5vw;
+  font-size: 6vw;
   font-family: "Archivo", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
+  line-height: 0.95;
 }
 
 #helping-heading .accent {
   color: #FF0014;
 }
 
-.helping-gif img {
-  width: 15vw;
-  border-radius: 10px;
-}
+/* Why Consider Me ------------------------------------------------------------------------------------------------------------------------------------------ */
 
-.consider-marquee {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #000000;
-  z-index: 9;
-  padding: 30px;
-}
-
-.consider-marquee-content {
+#why-consider-me--services {
   display: flex;
-  width: max-content;
-  animation: scroll 25s linear infinite reverse;
+  justify-content: right;
+  margin-top: 50px;
+  padding: 150px 0;
+  background: linear-gradient(0deg, rgba(182, 182, 182, 1.00) 0%, rgba(245, 245, 245, 1.00) 100%);
 }
 
-.consider-marquee-content span {
-  white-space: nowrap;
-  padding-right: 5rem;
-  /* spacing between repeats */
-  font-size: 2rem;
-  font-weight: 500;
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  color: #E0FE7F;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-transform: lowercase;
+.why-consider-me-heading {
+  font-family: "Archivo", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: white;
+  padding: 70px 0 10px 20px;
+  letter-spacing: -2px;
 }
 
 /* Reasons */
 
 .reasons {
   display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  /* auto instead of scroll, so scrollbar hides cleanly */
-  border-bottom: #000000 1px solid;
-
-  /* Hide scrollbar cross-browser */
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  overflow-y: visible;
-}
-
-.reasons::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari */
-}
-
-.reasons.active {
-  cursor: grabbing;
-  cursor: -webkit-grabbing;
-}
-
-.reasons {
-  cursor: grab;
+  flex-direction: column;
+  width: 80%;
+  gap: 2px;
+  z-index: 10;
+  position: relative;
 }
 
 .reason {
-  flex: 0 0 28vw;
-  padding: 40px 30px;
-  border: 1px solid black;
-  height: 50vh;
-  background-color: #E1E1E1;
+  padding: 20px 20px;
+  background: linear-gradient(143deg, rgba(255, 255, 255, 1.00) 0%, rgba(242, 242, 242, 1.00) 50%, rgba(255, 255, 255, 1.00) 100%);
   transition: background-color 500ms ease;
-  /* duration + delay */
+  cursor: pointer;
 }
 
 .reason:hover {
   background-color: #ffffff;
 }
 
-.reason h2 {
+.click-heading h2{
   font-family: "Archivo", sans-serif;
-  font-size: 2rem;
-  margin-bottom: 30px;
+  font-size: 1.5rem;
+  font-weight: 400;
+
 }
 
 .reason p {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2rem;
-}
-
-/* Services Section------------------------------------------------------------------------------------------------------------- */
-
-#services {
-  position: relative;
-  width: 100%;
-  z-index: 2;
-}
-
-.noise {
-  align-content: center;
-  align-items: center;
-  display: flex;
-  flex: none;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 10px;
-  height: 400vh;
-  justify-content: center;
-  opacity: .067;
+  font-size: 0.9rem;
+  width: 30%;
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
   overflow: hidden;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 1 !important;
-  pointer-events: none;
+  transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease, padding 0.7s ease;
 }
 
-#services-h1 {
-  position: sticky;
-  top: 20px;
-  padding-bottom: 600px;
-  padding-top: 40px;
+.reason p.show {
+  max-height: 500px; /* large enough to fit your text */
+  opacity: 1;
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
 
-#services h1 {
-  font-size: 7vw;
-  font-family: "Akira", sans-serif;
-  text-align: center;
-}
-
-/* Cards */
-
-#cards {
+.grow-width {
   position: relative;
-  height: 400vh;
+  left: 40px;
+  opacity: 0.5;               /* hidden initially */
+  transition: all 0.6s;
 }
 
-.card {
-  width: 230px;
-  height: 280px;
-  perspective: 1000px;
-  cursor: pointer;
-  position: sticky;
-  top: 200px;
-  /* cards stick here when reached */
-  margin: auto;
-  z-index: 7;
-  margin-bottom: 200px;
-
-}
-
-/* Flip effect */
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.card:hover .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-inner.flipped {
-  transform: rotateY(180deg);
-}
-
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.50);
-}
-
-.card-front {
-  background: white;
-  border: 1px solid #e5e7eb;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.card-back {
-  background: #000000;
-  color: white;
-  transform: rotateY(180deg);
-  padding: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.card-back span {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 2rem;
-  font-weight: 500;
-}
-
-.card-back br {
-  font-size: 2rem;
-}
-
-/* Different alignments */
-.card-left {
-  margin-left: 10%;
-  /* left aligned */
-}
-
-.card-right {
-  margin-left: auto;
-  margin-right: 10%;
-  /* right aligned */
-}
-
-.card-center {
-  margin-left: auto;
-  margin-right: auto;
-  /* centered */
-}
-
-#shopify-logo {
-  width: 50%;
-}
-
-.card-front span {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: 500;
-}
-
-/* Skills Section---------------------------------------------------------------------------------------------- */
-
-#skills {
-  width: 100%;
-  padding: 50px 20px;
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 3;
-}
-
-#skills h1 {
-  font-size: 7vw;
-  font-family: "Akira", sans-serif;
-  text-align: center;
-}
-
-.skill-card {
-  width: 20%;
-  border: #000000 7px solid;
-  border-bottom: calc(20px + 7px) black solid;
-  padding: 15px;
-  height: 50%;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-40%, -50%);
-  background-color: white;
-  cursor: pointer;
-}
-
-.skill-card img {
-  width: 25%;
-}
-
-.skill-card h2 {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 2.3rem;
-  padding: 12px 0;
-}
-
-.skill-card h3 {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 1.1rem;
-  color: #313131;
-  padding-bottom: 25px;
+.grow-width.show {   
+  opacity: 1;
+  left: 0;
 }
 
 /* Contact Me Section------------------------------------------------------------------------------------------------------------ */
