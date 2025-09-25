@@ -322,29 +322,32 @@ main {
 /* About me Section------------------------------------------------------------------------------------------------------------- */
 
 #about-me {
-  padding: 50px 20px 0 20px;
+  padding: 70px 20px 50px 20px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-#about-me-wrapper {
-  padding-left: 5vw;
+#about-me-wrapper{
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
 }
 
 #top-div {
   display: flex;
   flex-direction: row;
   gap: 30px;
-  align-items: center;
   overflow: visible;
+  width: fit-content
 }
 
 #about-me h1 {
-  font-size: 15vw;
-  font-family: "Instrument Serif", serif;
+  font-size: 12vw;
+  font-family: "Instrument Sans", serif;
   text-align: center;
-  font-weight: 100;
+  font-weight:500;
   line-height: 0.8;
   white-space: nowrap;
 }
@@ -357,7 +360,6 @@ main {
 }
 
 .website-designer-box div {
-  border-radius: 15px;
   background-color: #FF0014;
   padding: 5px 30px;
   flex-grow: 0;
@@ -365,9 +367,11 @@ main {
 
 .website-designer-box h5 {
   font-size: 3.3rem;
-  font-family: "Instrument Serif", serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
   width: fit-content;
+  color: white;
+  
 }
 
 .reveal .line {
@@ -385,18 +389,20 @@ main {
   display: flex;
   flex-direction: row;
   gap: 30px;
+  width: fit-content
 }
 
 .img-with-points {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 80vw;
+  justify-content: flex-start;
 }
 
 .img-with-points img {
-  margin-left: 20px;
   padding-top: 3px;
-  width: 30%;
+  width: 14%;
+  height:fit-content;
 }
 
 .about-me-text {
@@ -406,21 +412,21 @@ main {
 }
 
 .about-me-text p {
-  font-family: "Instrument Serif", serif;
-  font-size: 1.7rem;
-  font-weight: 100;
-  margin: 30px 25px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 10px 25px;
   line-height: 1;
 }
 
 .arrow-wheel {
   display: flex;
-  justify-content: space-between;
+  width: 80;
   flex-direction: row;
-  padding-right: 15%;
   position: relative;
   bottom: 2vw;
-  align-items: flex-start;
+  align-items:center;
+  justify-content: space-between;
 }
 
 #arrow-div {
@@ -440,8 +446,8 @@ main {
 
 .arrow-wheel #wheel {
   aspect-ratio: 1/1;
-  width: 5vw;
-  height: 5vw;
+  width: 6vw;
+  height: 6vw;
   animation: spin 6s linear infinite;
 }
 
@@ -488,7 +494,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0px;
-    overflow: visible;
+  overflow: visible;
   margin-left: 30px;
 }
 
@@ -523,9 +529,7 @@ main {
 
 }
 
-.website-ss:hover{
-
-}
+.website-ss:hover {}
 
 .image-wrapper p {
   font-family: "archivo", serif;
@@ -573,12 +577,14 @@ main {
 /* Why Consider Me ------------------------------------------------------------------------------------------------------------------------------------------ */
 
 #why-consider-me--services {
+  margin-top: 50px;
+  padding-top: 150px;
+  padding-bottom: 3px;
+  background: linear-gradient(0deg, rgba(182, 182, 182, 1.00) 0%, rgba(245, 245, 245, 1.00) 100%);
   display: flex;
   justify-content: right;
-  margin-top: 50px;
-  padding: 150px 0;
-  background: linear-gradient(0deg, rgba(182, 182, 182, 1.00) 0%, rgba(245, 245, 245, 1.00) 100%);
 }
+
 
 .why-consider-me-heading {
   font-family: "Archivo", sans-serif;
@@ -605,13 +611,14 @@ main {
   background: linear-gradient(143deg, rgba(255, 255, 255, 1.00) 0%, rgba(242, 242, 242, 1.00) 50%, rgba(255, 255, 255, 1.00) 100%);
   transition: background-color 500ms ease;
   cursor: pointer;
+  z-index: 20;
 }
 
 .reason:hover {
   background-color: #ffffff;
 }
 
-.click-heading h2{
+.click-heading h2 {
   font-family: "Archivo", sans-serif;
   font-size: 1.5rem;
   font-weight: 400;
@@ -627,23 +634,26 @@ main {
   margin: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease, padding 0.7s ease;
+  margin-left: 10px;
 }
 
 .reason p.show {
-  max-height: 500px; /* large enough to fit your text */
+  max-height: 500px;
+  /* large enough to fit your text */
   opacity: 1;
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
-.grow-width {
+.grow-widths {
   position: relative;
   left: 40px;
-  opacity: 0.5;               /* hidden initially */
+  opacity: 0.5;
+  /* hidden initially */
   transition: all 0.6s;
 }
 
-.grow-width.show {   
+.grow-widths.show {
   opacity: 1;
   left: 0;
 }
