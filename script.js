@@ -214,5 +214,220 @@ if (document.readyState === 'loading') {
 }
 
 
+// Skills Section Animation--------------------------------------------------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', function () {
+  const floatingIcons = document.querySelectorAll('.floating-icon');
+  const skillsSection = document.querySelector('.skills-section');
+
+  // Store positions to prevent overlaps
+  let usedPositions = [];
+  const iconSize = 80; // Increase buffer zone around icons
+  const minDistance = 100; // Minimum distance between icons
+
+  // Check if two positions overlap
+  function isOverlapping(newPos, existingPositions, buffer = minDistance) {
+    for (let pos of existingPositions) {
+      const distance = Math.sqrt(
+        Math.pow(newPos.x - pos.x, 2) + Math.pow(newPos.y - pos.y, 2)
+      );
+      if (distance < buffer) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Enhanced random positioning with overlap prevention
+  function getRandomPosition() {
+    const sectionWidth = skillsSection.offsetWidth;
+    const sectionHeight = skillsSection.offsetHeight;
+
+    const centerX = sectionWidth / 2;
+    const centerY = sectionHeight / 2;
+    const exclusionWidth = 500; // Title exclusion zone
+    const exclusionHeight = 200;
+
+    let attempts = 0;
+    const maxAttempts = 100; // Prevent infinite loop
+
+    while (attempts < maxAttempts) {
+      let x = gsap.utils.random(iconSize, sectionWidth - iconSize);
+      let y = gsap.utils.random(iconSize, sectionHeight - iconSize);
+
+      // Check if position is in title exclusion zone
+      const inTitleZone = (
+        x > centerX - exclusionWidth / 2 &&
+        x < centerX + exclusionWidth / 2 &&
+        y > centerY - exclusionHeight / 2 &&
+        y < centerY + exclusionHeight / 2
+      );
+
+      // If not in title zone and doesn't overlap with existing positions
+      if (!inTitleZone && !isOverlapping({ x, y }, usedPositions)) {
+        return { x, y };
+      }
+
+      attempts++;
+    }
+
+    // Fallback: use grid-based positioning if random fails
+    return getGridPosition();
+  }
+
+  // Fallback grid-based positioning
+  function getGridPosition() {
+    const sectionWidth = skillsSection.offsetWidth;
+    const sectionHeight = skillsSection.offsetHeight;
+
+    const cols = 4;
+    const rows = 3;
+    const cellWidth = sectionWidth / cols;
+    const cellHeight = sectionHeight / rows;
+
+    // Find next available grid position
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        // Skip center cells (title area)
+        if ((row === 1) && (col === 1 || col === 2)) continue;
+
+        const x = col * cellWidth + gsap.utils.random(cellWidth * 0.2, cellWidth * 0.8);
+        const y = row * cellHeight + gsap.utils.random(cellHeight * 0.2, cellHeight * 0.8);
+
+        if (!isOverlapping({ x, y }, usedPositions, minDistance * 0.8)) {
+          return { x, y };
+        }
+      }
+    }
+
+    // Ultimate fallback: corners
+    const corners = [
+      { x: 100, y: 100 },
+      { x: sectionWidth - 100, y: 100 },
+      { x: 100, y: sectionHeight - 100 },
+      { x: sectionWidth - 100, y: sectionHeight - 100 }
+    ];
+
+    return corners[usedPositions.length % corners.length];
+  }
+
+  // Initialize floating animation for each element
+  function initializeFloatingAnimation(element, index) {
+    const position = getRandomPosition();
+
+    // Store this position
+    usedPositions.push(position);
+
+    // Set initial position
+    gsap.set(element, {
+      left: position.x,
+      top: position.y,
+      opacity: 0
+    });
+
+    // Parse floating data
+    const json = element.dataset.gsapFloating;
+    const data = JSON.parse(json || '{}');
+
+    const xpos = data.x || 20;
+    const ypos = data.y || 20;
+    const speedx = data.speedx || 3;
+    const speedy = data.speedy || 3;
+
+    // Animate in with stagger
+    gsap.to(element, {
+      opacity: 1,
+      duration: 0.8,
+      delay: index * 0.2, // Slightly longer stagger
+      ease: "power2.out"
+    });
+
+    // Add hover effects
+    element.addEventListener('mouseenter', () => {
+      gsap.to(element, { scale: 1.2, duration: 0.3, ease: "power2.out" });
+    });
+
+    element.addEventListener('mouseleave', () => {
+      gsap.to(element, { scale: 1, duration: 0.3, ease: "power2.out" });
+    });
+
+    // Create floating timeline
+    const floatingTimeline = gsap.timeline({
+      defaults: {
+        ease: 'sine.inOut',
+        repeat: -1,
+        yoyo: true,
+      }
+    });
+
+    // Floating animation (reduced movement to prevent overlapping during animation)
+    floatingTimeline
+      .fromTo(element,
+        { x: -xpos / 3 }, // Reduced movement range
+        { x: xpos / 3, duration: speedx }, 0
+      )
+      .fromTo(element,
+        { y: -ypos / 3 }, // Reduced movement range
+        { y: ypos / 3, duration: speedy }, 0
+      );
+  }
+
+  // Initialize all floating icons
+  floatingIcons.forEach((element, index) => {
+    const img = element.querySelector('.skill-image');
+    if (img) {
+      if (img.complete) {
+        initializeFloatingAnimation(element, index);
+      } else {
+        img.onload = () => {
+          initializeFloatingAnimation(element, index);
+        };
+        img.onerror = () => {
+          console.warn(`Failed to load image: ${img.src}`);
+          initializeFloatingAnimation(element, index);
+        };
+      }
+    } else {
+      initializeFloatingAnimation(element, index);
+    }
+  });
+
+  // Title animation
+  gsap.fromTo('.skills-title',
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: '.skills-section',
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      }
+    }
+  );
+
+  // Enhanced resize handler
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Reset positions array
+      usedPositions = [];
+
+      floatingIcons.forEach((element, index) => {
+        const position = getRandomPosition();
+        usedPositions.push(position);
+
+        gsap.set(element, {
+          left: position.x,
+          top: position.y
+        });
+      });
+    }, 250);
+  });
+});
+
 
 

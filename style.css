@@ -329,7 +329,7 @@ main {
   flex-direction: column;
 }
 
-#about-me-wrapper{
+#about-me-wrapper {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -347,7 +347,7 @@ main {
   font-size: 12vw;
   font-family: "Instrument Sans", serif;
   text-align: center;
-  font-weight:500;
+  font-weight: 500;
   line-height: 0.8;
   white-space: nowrap;
 }
@@ -371,7 +371,7 @@ main {
   font-weight: 100;
   width: fit-content;
   color: white;
-  
+
 }
 
 .reveal .line {
@@ -402,7 +402,7 @@ main {
 .img-with-points img {
   padding-top: 3px;
   width: 14%;
-  height:fit-content;
+  height: fit-content;
 }
 
 .about-me-text {
@@ -425,7 +425,7 @@ main {
   flex-direction: row;
   position: relative;
   bottom: 2vw;
-  align-items:center;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -614,6 +614,10 @@ main {
   z-index: 20;
 }
 
+.call-t-action{
+  background: #00812f !important;
+}
+
 .reason:hover {
   background-color: #ffffff;
 }
@@ -658,15 +662,74 @@ main {
   left: 0;
 }
 
+/* Skills section ------------------------------------------------------------------------------------------------ */
+
+.skills-section {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.skills-title {
+  font-family: "mc", sans-serif;
+  font-size: clamp(3rem, 5vw, 6rem);
+  font-weight: 100;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  position: relative;
+}
+
+.floating-icon {
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0;
+  /* Will be animated in by GSAP */
+}
+
+.skill-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: filter 0.3s ease;
+}
+
+.floating-icon:hover .skill-image {
+  filter: drop-shadow(0 8px 16px rgba(255, 255, 255, 0.3)) brightness(1.1);
+}
+
+/* Responsive sizes */
+@media (max-width: 768px) {
+  .skill-image {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-image {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+
 /* Contact Me Section------------------------------------------------------------------------------------------------------------ */
 
 #contact-me {
-  padding: 10px 0 50px;
+  padding: 50px 0 50px;
 }
 
 #contact-me h1 {
-  font-size: 7vw;
-  font-family: "Akira", sans-serif;
+  font-size: 5vw;
+  font-family: "mc", sans-serif;
   text-align: center;
 }
 
