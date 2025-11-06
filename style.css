@@ -1012,8 +1012,9 @@ footer .links {
   }
 
   nav a{
-    font-weight: 400;
-    font-size: 2rem;
+    font-weight: 500;
+    font-size: 1.4rem;
+    opacity: 1;
   }
 
   .logo{
@@ -1057,7 +1058,7 @@ footer .links {
     gap: 0;
     overflow: visible;
     width: fit-content;
-    height: 70px;
+    height: 50px;
   }
 
   #about-me-wrapper {
@@ -1066,7 +1067,7 @@ footer .links {
   }
 
   #about-me h1 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
   }
 
   .website-designer-box {
@@ -1078,6 +1079,11 @@ footer .links {
 
   .website-designer-box .scnd-div{
     padding: 5px 20px !important;
+  }
+
+  .website-designer-box h5{
+    font-size: 2rem;
+    font-weight: 300;
   }
 
   .img-with-points {
@@ -1095,7 +1101,7 @@ footer .links {
   }
 
   .about-me-text .reveal{
-    margin-top: 15px;
+    margin-top: 10px;
   }
 
   .about-me-text .line{
@@ -1104,12 +1110,17 @@ footer .links {
 
   .about-me-text p {
     margin: 10px 0;
+    font-size: 1.2rem;
   }
 
   #arrow-div {
     width: 13vw;
     height: 13vw;
-    bottom: 56vw;
+    bottom: 70vw;
+  }
+
+  .website {
+    padding: 0;
   }
 
   .arrow-wheel #wheel {
@@ -1122,20 +1133,26 @@ footer .links {
     padding: 0;
   }
 
+  .click-heading h2 {
+    font-family: "Archivo", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
   .reason p {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-right: 10px;
   }
 
   .reason p.show {
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-right: 10px;
   }
 
   #contact-me h1 {
-    font-size: clamp(3rem, 5vw, 6rem);
+    font-size: clamp(2.5rem, 4vw, 5rem);
   }
 
   .wrap .place {
@@ -1147,7 +1164,7 @@ footer .links {
   }
 
   #contact-me button {
-    font-size: 1.3rem;
-    padding: 15px 40px;
+    font-size: 1.1rem;
+    padding: 10px 30px;
   }
 }
