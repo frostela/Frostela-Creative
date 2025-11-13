@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "punch";
+  src: url("/Fonts/punch.ttf") format("opentype");
+}
+
+main{
+    padding: 0 20px;
+    padding-top: 160px;
+    background-color: #F5F5F5;
+}
+.website-ss-left{
+    width: 50%;
+}
+.website-ss-left img{
+ width: 100%;
+}
+
+.topsec{
+    display: flex;
+    gap: 50px;
+}
+
+.website-details-right{
+    width: 33%;
+}
+
+.website-details-right h1{
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    font-size: 2.5vw;
+    line-height: 0.8;
+    margin-bottom: 30px;
+}
+
+.website-details-right h3{
+    font-family: "mc", Arial, Helvetica, sans-serif;
+    font-weight: 300 !important;
+    text-transform: capitalize;
+    font-size: 1vw;
+    margin-bottom: 10px;
+}
+
+.website-details-right p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 300 !important;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    font-size: 1rem;
+    line-height: 113%;
+}
+
+/* Showcase Section ---------------------------------------------------------------------------------------------------*/
+
+#showcase{
+    padding-top: 120px;
+    padding-bottom: 270px;
+}
+
+#showcase .heading{
+    position: sticky;
+    top: 120px;
+}
+
+#showcase .heading h1{
+    color: #FF0000;
+    font-family: "punch", Arial, Helvetica, sans-serif;
+    font-size: 15vw;
+    font-weight: 100;
+    text-align: center;
+    filter: blur(8px);
+}
+
+#showcase .heading h3{
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2vw;
+    font-weight: 800;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+#showcase img{
+    width: 60%;
+    left: 50%;
+    transform: translatex(-50%);
+    position: relative;
+    margin-top: 100px;
+    padding-bottom: 100px;
+    background-color: #F5F5F5;
+}

@@ -364,7 +364,7 @@ main {
 }
 
 .website-designer-box div {
-  background-color: #FF0014;
+  background-color: #FF0000;
   padding: 5px 30px;
   flex-grow: 0;
 }
@@ -437,7 +437,7 @@ main {
   position: relative;
   width: 4vw;
   height: 4vw;
-  background-color: #FF0014;
+  background-color: #FF0000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -533,8 +533,6 @@ main {
 
 }
 
-.website-ss:hover {}
-
 .image-wrapper p {
   font-family: "archivo", serif;
   font-weight: 400;
@@ -575,7 +573,20 @@ main {
 }
 
 #helping-heading .accent {
-  color: #FF0014;
+  color: #FF0000;
+}
+
+[animate] .line {
+  display: block !important;
+}
+
+[animate] .word {
+  display: inline-block; /* required for animation */
+}
+
+#helping-heading h2 {
+  display: block;
+  width: 100%;
 }
 
 /* Why Consider Me ------------------------------------------------------------------------------------------------------------------------------------------ */
@@ -620,7 +631,7 @@ main {
 }
 
 .call-t-action{
-  background: #00812f !important;
+  background: linear-gradient(135deg, #96000c, #FF0014) !important;
 }
 
 .reason:hover {
@@ -931,7 +942,6 @@ footer .links {
 /* 1200p Tab Versionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn */
 
 @media (max-width: 1024px) {
-  #about-me h1 {}
 
   .word {
     width: fit-content;
