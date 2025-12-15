@@ -1,94 +1,230 @@
 @font-face {
-  font-family: "punch";
-  src: url("/Fonts/punch.ttf") format("opentype");
+    font-family: "punch";
+    src: url("/Fonts/punch.ttf") format("opentype");
 }
 
-main{
+@font-face {
+    font-family: "hel-comp";
+    src: url("/Fonts/helvetica-compressed.otf") format("opentype");
+}
+
+.border-red {
+    border: 7px solid;
+    border-image: linear-gradient(146deg, rgba(99, 0, 0, 1) 0%, rgba(218, 2, 0, 1) 100%) 1;
+}
+
+main {
     padding: 0 20px;
     padding-top: 160px;
     background-color: #F5F5F5;
 }
-.website-ss-left{
-    width: 50%;
-}
-.website-ss-left img{
- width: 100%;
-}
 
-.topsec{
-    display: flex;
-    gap: 50px;
-}
-
-.website-details-right{
-    width: 33%;
-}
-
-.website-details-right h1{
-    font-family: "Archivo", Arial, Helvetica, sans-serif;
-    font-weight: 600 !important;
+.head h1 {
+    font-family: "hel-comp", Arial, Helvetica, sans-serif;
+    font-size: 8vw;
     text-transform: uppercase;
-    font-size: 2.5vw;
-    line-height: 0.8;
-    margin-bottom: 30px;
-}
-
-.website-details-right h3{
-    font-family: "mc", Arial, Helvetica, sans-serif;
-    font-weight: 300 !important;
-    text-transform: capitalize;
-    font-size: 1vw;
-    margin-bottom: 10px;
-}
-
-.website-details-right p{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 300 !important;
-    text-transform: capitalize;
-    margin-bottom: 30px;
-    opacity: 0.9;
-    font-size: 1rem;
-    line-height: 113%;
-}
-
-/* Showcase Section ---------------------------------------------------------------------------------------------------*/
-
-#showcase{
-    padding-top: 120px;
-    padding-bottom: 270px;
-}
-
-#showcase .heading{
-    position: sticky;
-    top: 120px;
-}
-
-#showcase .heading h1{
-    color: #FF0000;
-    font-family: "punch", Arial, Helvetica, sans-serif;
-    font-size: 15vw;
     font-weight: 100;
     text-align: center;
-    filter: blur(8px);
+    line-height: 88%;
 }
 
-#showcase .heading h3{
+.small-heads {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0 24vw;
+}
+
+.small-heads h4 {
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 2vw;
-    font-weight: 800;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
-#showcase img{
-    width: 60%;
-    left: 50%;
-    transform: translatex(-50%);
-    position: relative;
+.head .web-ss {
+    display: flex;
+    justify-content: center;
     margin-top: 100px;
-    padding-bottom: 100px;
-    background-color: #F5F5F5;
+}
+
+.head .web-ss img {
+    width: 70vw;
+}
+
+/* Details Section ---------------------------------------------------------------------------------------------- */
+
+#details {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin: 100px 0;
+}
+
+#details h5 {
+    font-family: "mc", Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+#details p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 0.95rem;
+}
+
+#details .right-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#details .left-part h5,
+#details .left-part p {
+    text-align: right;
+}
+
+/* Masonry Section ----------------------------------------------------------------------------------------------- */
+
+#masonry {
+    column-count: 2;
+    margin-bottom: 150px;
+}
+
+.ss-card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(146deg, rgba(99, 0, 0, 1.00) 0%, rgba(218, 2, 0, 1.00) 100%);
+    margin-bottom: 15px;
+    break-inside: avoid;
+}
+
+.ss-card img {
+    padding: 3px;
+}
+
+.ss-card .ss-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin: 3px 0;
+}
+
+.ss-card .ss-details p {
+    font-family: "mc-thin", Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: 100 !important;
+    line-height: 100%;
+}
+
+/* Other Works ---------------------------------------------------------------------------------------- */
+
+#other-works {
+    margin-bottom: 100px;
+}
+
+#other-works h1 {
+    font-family: "hel-comp", Arial, Helvetica, sans-serif;
+    font-size: 8vw;
+    text-transform: uppercase;
+    font-weight: 100;
+    text-align: center;
+    line-height: 88%;
+}
+
+.web-list {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+}
+
+.web-list a {
+    width: 20%;
+}
+
+.web-list img {
+    width: 100%;
+    box-shadow: 1px 2px 4px 2px rgba(0, 0, 0, 0.43);
+    transition: 500ms;
+    cursor: pointer;
+}
+
+.web-list img:hover {
+    scale: 1.1;
+    box-shadow: 1px 2px 6px 2px rgba(0, 0, 0, 0.71);
+    transition: 500ms;
+}
+
+/* 1200 tab version --------------------------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+
+    .web-list {
+        flex-wrap: wrap;
+        row-gap: 40px;
+    }
+
+    .web-list a {
+        width: 40%;
+    }
+
+}
+
+/* 768px mobile version ----------------------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .head h1 {
+        font-size: 15vw;
+    }
+
+    .small-heads {
+        margin: 0 2vw;
+    }
+
+    .head .web-ss img {
+        width: 90vw;
+    }
+
+    #details {
+        flex-direction: column-reverse;
+        margin: 100px 0;
+    }
+
+    .industry {
+        margin-bottom: 15px;
+    }
+
+    #details h5 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    #details p {
+        font-size: 1.2rem;
+    }
+
+    .right-part {
+        margin-bottom: 20px;
+    }
+
+    #masonry {
+        column-count: 1;
+        margin-bottom: 150px;
+    }
+
+    .web-list a {
+        width: 80%;
+    }
+}
+
+/* 550 px -------------------------------------------------------------------------------------------------------- */
+
+@media (max-width: 550px) {
+    .head h1 {
+        font-size: 14vw;
+    }
+
+    .small-heads h4 {
+        font-size: 0.9rem;
+    }
 }

@@ -20,6 +20,11 @@ html {
   src: url("/Fonts/minecraft-ten-font-cyrillic.ttf") format("opentype");
 }
 
+@font-face {
+  font-family: "mc-thin";
+  src: url("/Fonts/MINECRAFT.TTF") format("opentype");
+}
+
 body {
   background-color: #f5f5f5;
   overflow-x: hidden;
