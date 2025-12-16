@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
       first: !fields.first.value.trim(),
       last: !fields.last.value.trim(),
       email: !fields.email.validity.valid,
-      msg: fields.msg.value.trim().length < 50
+      msg: fields.msg.value.trim().length < 20
     };
     showError(fields.first, errors.first, v.first);
     showError(fields.last, errors.last, v.last);
