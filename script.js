@@ -110,6 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
       emailjs.init({ publicKey: "2KE1Abs0nB-KGgJcv" });
     })();
 
+  console.log("CONTACT FORM JS LOADED");
+
+
   const form = document.getElementById('contact-form');
   const ok = document.getElementById('ok');
   const fields = {
