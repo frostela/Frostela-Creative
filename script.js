@@ -104,11 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // -------------------------------------------------------------------- Contact Form ------------------
+  // -------------------------------------------------------------------- Contact Form ------------------
 
-    (function () {
-      emailjs.init({ publicKey: "2KE1Abs0nB-KGgJcv" });
-    })();
+  (function () {
+    emailjs.init({ publicKey: "2KE1Abs0nB-KGgJcv" });
+  })();
 
   console.log("CONTACT FORM JS LOADED");
 
@@ -430,6 +430,38 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }, 250);
   });
+
+  // Loading Bar ----------------------------------------------------------------------------------------------
+
+  let percent = 0;
+  const percentText = document.getElementById("percent");
+  const progress = document.getElementById("progress");
+  const startBtn = document.getElementById("startBtn");
+  const loader = document.getElementById("loader");
+  const content = document.getElementById("content");
+
+  const interval = setInterval(() => {
+    percent++;
+    percentText.innerText = percent + "%";
+    progress.style.width = percent + "%";
+
+    if (percent >= 100) {
+      clearInterval(interval);
+
+      // Show button
+      startBtn.style.opacity = "1";
+      startBtn.style.pointerEvents = "auto";
+    }
+  }, 30); // speed (lower = faster)
+
+  startBtn.addEventListener("click", () => {
+    loader.style.opacity = "0";
+    setTimeout(() => {
+      loader.style.display = "none";
+      content.style.display = "block";
+    }, 500);
+  });
+
 });
 
 

@@ -30,7 +30,75 @@ body {
   overflow-x: hidden;
 }
 
-/* NAV */
+/* Loading Bar -------------------------------------------------------------------------------------------- */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: white;
+  font-family: "mc-thin", Arial, Helvetica, sans-serif;
+}
+
+/* Hide site initially */
+#content {
+  display: none;
+}
+
+/* Loader box */
+.loader-box {
+  text-align: center;
+  width: 95%;
+}
+
+/* Percentage text */
+.percent {
+  font-size: 2rem;
+  font-weight: 100;
+  margin-bottom: 20px;
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background: #333;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: white;
+  transition: width 0.1s linear;
+}
+
+/* Button */
+#startBtn {
+  opacity: 0;
+  pointer-events: none;
+  padding: 10px 22px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(145deg, #80000b, #FF0014);
+  cursor: pointer;
+  transition:
+    transform 0.06s ease-in,
+    box-shadow 0.2s;
+  border: none;
+}
+
+#startBtn:hover {
+  background: linear-gradient(145deg, #570007, #c90011);
+}
+
+
+/* NAV ------------------------------------------------------------------------------------------------------ */
 
 nav {
   width: 100%;
@@ -586,7 +654,8 @@ main {
 }
 
 [animate] .word {
-  display: inline-block; /* required for animation */
+  display: inline-block;
+  /* required for animation */
 }
 
 #helping-heading h2 {
@@ -635,7 +704,7 @@ main {
   z-index: 20;
 }
 
-.call-t-action{
+.call-t-action {
   background: linear-gradient(135deg, #96000c, #FF0014) !important;
 }
 
@@ -985,15 +1054,15 @@ footer .links {
   }
 
   #about-me-wrapper {
-   padding-left: 0;
-   width: 90%;
+    padding-left: 0;
+    width: 90%;
   }
 
   .img-with-points img {
     width: 26%;
-  } 
+  }
 
-  #c_f{
+  #c_f {
     display: none;
   }
 
@@ -1013,26 +1082,26 @@ footer .links {
     gap: 15px;
   }
 
-  #Works span{
+  #Works span {
     font-size: 2rem;
-  
+
   }
 }
 
 /* 450p wide mobile Versionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn */
 
 @media (max-width: 550px) {
-  nav{
+  nav {
     width: 100vw;
   }
 
-  nav a{
+  nav a {
     font-weight: 500;
     font-size: 1.4rem;
     opacity: 1;
   }
 
-  .logo{
+  .logo {
     width: 70%;
   }
 
@@ -1062,7 +1131,7 @@ footer .links {
     transition: all 0.4s ease;
   }
 
-  .hero-headings h4{
+  .hero-headings h4 {
     font-size: 5vw;
     margin-top: 15px;
   }
@@ -1092,11 +1161,11 @@ footer .links {
     bottom: 65px;
   }
 
-  .website-designer-box .scnd-div{
+  .website-designer-box .scnd-div {
     padding: 5px 20px !important;
   }
 
-  .website-designer-box h5{
+  .website-designer-box h5 {
     font-size: 2rem;
     font-weight: 300;
   }
@@ -1115,11 +1184,11 @@ footer .links {
     margin-left: 15px;
   }
 
-  .about-me-text .reveal{
+  .about-me-text .reveal {
     margin-top: 10px;
   }
 
-  .about-me-text .line{
+  .about-me-text .line {
     text-align: left !important;
   }
 
