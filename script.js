@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let typeSplit = new SplitType('[animate]', {
     types: 'lines, words, chars',
     tagName: 'span'
-  })
+  });
 
   gsap.from('[animate] .word', {
     y: '100%',
@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
       scrub: true
     }
 
-  })
+  });
 
   // Animation B: Reveal Lines ---------------------------------------------------------
 
   let typeSplit2 = new SplitType('[animate2]', {
     types: 'lines, words, chars',
     tagName: 'span'
-  })
+  });
 
   gsap.from('[animate2] .word', {
     y: '110%',
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scrub: true
     }
 
-  })
+  });
 
 
 
