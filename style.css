@@ -1251,4 +1251,9 @@ footer .links {
     font-size: 1.1rem;
     padding: 10px 30px;
   }
+
+  footer .links {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
