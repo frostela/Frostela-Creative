@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!validate()) return;
 
     try {
-      await emailjs.send('service_mxshe2e', 'template_jtx8c18', {
+      await emailjs.send('service_81t7vf4', 'template_jtx8c18', {
         firstName: fields.first.value,
         lastName: fields.last.value,
         email: fields.email.value,
