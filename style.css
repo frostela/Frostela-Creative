@@ -917,7 +917,7 @@ textarea:focus {
   margin-top: 14px;
 }
 
-#contact-me button {
+button {
   appearance: none;
   border: none;
   /* border-radius: 50px; */
@@ -929,13 +929,14 @@ textarea:focus {
   transition:
     transform 0.06s ease-in,
     box-shadow 0.2s;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
 }
 
-#contact-me button:hover {
+button:hover {
   background: linear-gradient(135deg, #610008, #ac000e);
 }
 
-#contact-me button:active {
+button:active {
   transform: translateY(1px);
   box-shadow: 0 6px 16px rgba(96, 165, 250, 0.26);
 }

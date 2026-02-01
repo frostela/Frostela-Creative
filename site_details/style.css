@@ -155,6 +155,37 @@ main {
     transition: 500ms;
 }
 
+.visit-site a{
+    position: fixed;
+    right: 0;
+    margin: 20px;
+    bottom: 0;
+}
+
+.visit-site a {
+  appearance: none;
+  border: none;
+  /* border-radius: 50px; */
+  padding: 12px 30px;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(135deg, #96000c, #FF0014);
+  cursor: pointer;
+  transition:
+    transform 0.06s ease-in,
+    box-shadow 0.2s;
+  text-decoration: none;
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+}
+
+.visit-site a:hover {
+  background: linear-gradient(135deg, #610008, #ac000e);
+}
+
+.visit-site a:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 16px rgba(96, 165, 250, 0.26);
+}
 /* 1200 tab version --------------------------------------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
