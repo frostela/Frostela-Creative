@@ -433,34 +433,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Loading Bar ----------------------------------------------------------------------------------------------
 
-  let percent = 0;
-  const percentText = document.getElementById("percent");
-  const progress = document.getElementById("progress");
-  const startBtn = document.getElementById("startBtn");
-  const loader = document.getElementById("loader");
-  const content = document.getElementById("content");
+  const hasLoaded = sessionStorage.getItem("loaderShown");
 
-  const interval = setInterval(() => {
-    percent++;
-    percentText.innerText = percent + "%";
-    progress.style.width = percent + "%";
+  if (!hasLoaded) {
+    // FIRST LOAD OR RELOAD ONLY
+    sessionStorage.setItem("loaderShown", "true");
 
-    if (percent >= 100) {
-      clearInterval(interval);
+    let percent = 0;
+    const percentText = document.getElementById("percent");
+    const progress = document.getElementById("progress");
+    const startBtn = document.getElementById("startBtn");
+    const loader = document.getElementById("loader");
+    const content = document.getElementById("content");
 
-      // Show button
-      startBtn.style.opacity = "1";
-      startBtn.style.pointerEvents = "auto";
-    }
-  }, 30); // speed (lower = faster)
+    const interval = setInterval(() => {
+      percent++;
+      percentText.innerText = percent + "%";
+      progress.style.width = percent + "%";
 
-  startBtn.addEventListener("click", () => {
-    loader.style.opacity = "0";
-    setTimeout(() => {
-      loader.style.display = "none";
-      content.style.display = "block";
-    }, 500);
-  });
+      if (percent >= 100) {
+        clearInterval(interval);
+        startBtn.style.opacity = "1";
+        startBtn.style.pointerEvents = "auto";
+      }
+    }, 30);
+
+    startBtn.addEventListener("click", () => {
+      loader.style.opacity = "0";
+      setTimeout(() => {
+        loader.style.display = "none";
+        content.style.display = "block";
+      }, 500);
+    });
+
+  } else {
+    // NOT FIRST LOAD → SKIP LOADER
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  }
 
 });
 
