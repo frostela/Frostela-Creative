@@ -211,13 +211,13 @@ main {
 /* Marquee Section--------------------------------------------------------------------------------------------------------------- */
 
 .marquee {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: relative;
   width: 100vw;
   overflow: hidden;
   background: #E1E1E1;
   z-index: 11;
+  padding: 0;
+  margin: 0;
 }
 
 .marquee-content {
@@ -256,75 +256,6 @@ main {
 
   /* shift by half since we duplicated text */
 }
-
-/* Cat Section------------------------------------------------------------------------------------------------------------------- */
-
-/* Cat sprite animation */
-.cat {
-  position: fixed;
-  bottom: 15px;
-  /* just above the marquee */
-  left: -100px;
-  /* start off screen */
-  width: 96px;
-  /* frame width (adjust to 1 frame width from your sprite sheet) */
-  height: 64px;
-  /* frame height */
-  background: url("/contents/images/cat/WALK.png") left center;
-  background-size: cover;
-
-  /* Make it walk across screen */
-  animation: walkAcross 12s linear infinite, walkSprite 2s steps(12) infinite;
-  cursor: pointer;
-  z-index: 20;
-}
-
-/* Walk across screen */
-@keyframes walkAcross {
-  0% {
-    left: 100%;
-  }
-
-  100% {
-    left: -100px;
-  }
-}
-
-/* Animate sprite frames */
-@keyframes walkSprite {
-  from {
-    background-position: 0px;
-  }
-
-  to {
-    background-position: -960px;
-  }
-
-  /* frameWidth * frameCount */
-}
-
-/* Message bubble */
-.cat::after {
-  content: "Meow 🐾";
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  color: black;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-
-.cat:hover::after {
-  opacity: 1;
-}
-
 
 /* Hero Section------------------------------------------------------------------------------------------------------------------ */
 
@@ -958,7 +889,7 @@ button:active {
 
 /* Footer Section---------------------------------------------------------------------------------------------------------------- */
 footer {
-  padding: 50px 20px 50px 20px;
+  padding: 50px 20px 15px 20px;
 }
 
 footer .links {
