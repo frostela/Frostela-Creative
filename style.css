@@ -1188,4 +1188,21 @@ footer .links {
     align-items: flex-start;
     flex-direction: column;
   }
+
+  #helping-heading h2 {
+    font-size: 9vw !important;
+  }
+
+  #helping-heading .convert {
+    padding-left: 10vw !important;
+    text-align: left !important;
+  }
+
+  .reasons {
+    width: 90%;
+  }
+
+  .why-consider-me-heading {
+    padding: 50px 0 10px 20px;
+  }
 }
